@@ -1,3 +1,112 @@
+@use './base/mixins';
+@use './base/variables';
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+html {
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
 body {
-    background-color: red;
+    background-color: variables.$clr-white;
+    font-family: 'Montserrat', sans-serif;
+    padding: 1em 2em;
+    min-height: 100vh;
+    font-size: 62.5%;
+}
+
+
+.header {
+    width: 100%;
+    text-align: center;
+    padding: 2em 1em;
+    background-color: variables.$clr-green;
+    border-radius: 1rem;
+
+    &__top-row {
+        width: 100%;
+
+        .logo {
+            @include mixins.titleText(1.5rem, 500, variables.$clr-pink);
+        }
+
+        .search-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            width: 100%;
+            padding-block: 2em;
+            margin-top: 1em;
+
+            .search-input {
+                position: absolute;
+                padding: .8em 2em;
+                outline: none;
+                border: none;
+                border-radius: .5rem;
+                transform: scaleX(0);
+                transition: all .25s ease;
+
+                &.active {
+                    transform: scaleX(1);
+                }
+
+                &:focus {
+                    background: variables.$clr-blue;
+                }
+
+                &::placeholder {
+                    color: variables.$clr-black;
+                }
+            }
+
+            i {
+                cursor: pointer;
+                font-size: 1.5rem;
+                color: variables.$clr-pink;
+                z-index: 777;
+                transition: all .5s ease;
+
+                &.active {
+                    transform: translateX(90px) rotate(720deg);
+                }
+            }
+        }
+    }
+
+    .form {
+        // border-top: variables.$border;
+        @include mixins.titleText(.8rem, 600, variables.$clr-black);
+        padding-block: 1em;
+        transform: scaleY(0);
+        display: none;
+        transform-origin: top;
+
+
+        &.active {
+            transform: scaleY(1);
+            display: block;
+        }
+
+        label:where(:not(:first-of-type)) {
+            margin-left: 1em;
+        }
+    }
+
+    .random-btn {
+        cursor: pointer;
+        padding: 1em 3em;
+        outline: none;
+        border: none;
+        @include mixins.titleText(.8rem, 600, variables.$clr-black);
+        margin-top: 2em;
+    }
 }
