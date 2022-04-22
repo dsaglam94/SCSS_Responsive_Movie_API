@@ -52,8 +52,11 @@ body {
                 outline: none;
                 border: none;
                 border-radius: .5rem;
+                // transform-origin: right;
                 transform: scaleX(0);
                 transition: all .25s ease;
+                box-shadow: inset 11px 11px 32px #d1d1d1,
+                inset -11px -11px 32px #ffffff;
 
                 &.active {
                     transform: scaleX(1);
@@ -72,11 +75,18 @@ body {
                 cursor: pointer;
                 font-size: 1.5rem;
                 color: variables.$clr-pink;
+                width: 3rem;
+                height: 3rem;
+                line-height: 3rem;
+                border-radius: 50%;
+                background: #e0e0e0;
+                box-shadow: inset 11px 11px 32px #d1d1d1,
+                inset -11px -11px 32px #ffffff;
                 z-index: 777;
                 transition: all .5s ease;
 
                 &.active {
-                    transform: translateX(90px) rotate(720deg);
+                    transform: translateX(110px) rotate(720deg);
                 }
             }
         }
@@ -90,7 +100,6 @@ body {
         display: none;
         transform-origin: top;
 
-
         &.active {
             transform: scaleY(1);
             display: block;
@@ -98,6 +107,34 @@ body {
 
         label:where(:not(:first-of-type)) {
             margin-left: 1em;
+        }
+
+        input[type="radio"] {
+            transform: translateY(0.25em);
+            border: variables.$border;
+            background-color: white;
+            appearance: none;
+            width: 1rem;
+            height: 1rem;
+            border-radius: 50%;
+            position: relative;
+            cursor: pointer;
+
+            &::before {
+                content: '';
+                position: absolute;
+                width: .55rem;
+                height: .55rem;
+                border-radius: 50%;
+                background-color: variables.$clr-blue;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%,-50%) scale(0);
+            }
+
+            &:checked::before {
+                transform: translate(-50%,-50%) scale(1);
+            }
         }
     }
 
@@ -107,6 +144,144 @@ body {
         outline: none;
         border: none;
         @include mixins.titleText(.8rem, 600, variables.$clr-black);
+        background-color: variables.$clr-blue;
+        border-radius: .5rem;
         margin-top: 2em;
+    }
+}
+
+.main { 
+    @include mixins.grid(15rem);
+    padding-block: 2em;
+
+    .movie {
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+        width: 100%;
+        border-radius: 1rem;
+        position: relative;
+        overflow: hidden;
+        transition: scale .5s ease;
+
+
+        &:hover .movie__poster img {
+            transform: scale(1.1);
+        }
+
+        &__poster {
+            width: 100%;
+            overflow: hidden;
+            cursor: pointer;
+
+            img {
+                width: 100%;
+                height: 30rem;
+                object-fit: cover;
+                transition: all .5s ease;
+
+            }
+        }
+
+        &__content {
+            background-color: variables.$clr-green;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 3em;
+            width: 100%;
+
+            .title {
+                @include mixins.titleText(1.5rem, 600, variables.$clr-black);
+            }
+
+            .rating {
+                @include mixins.titleText(.9rem, 600, variables.$clr-black);
+
+                &.green {
+                    color: green;
+                }
+
+                &.orange {
+                    color: orange;
+                }
+
+                &.red {
+                    color: red;
+                }
+            }
+        }
+
+        .movie__overview {
+            background-color: variables.$clr-pink;
+            position: absolute;
+            padding: 3em;
+            bottom: 0;
+            left: 0;
+            text-align: center;
+            transform: translateY(101%);
+            transition: transform .5s ease;
+
+            &.active {
+                transform: translateY(0);
+            }
+
+            &--header {
+                padding-inline: 1em;
+                margin-bottom: 2em;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+
+                .close-btn {
+                    font-size: 1.3rem;
+                    cursor: pointer;
+                    background-color: variables.$clr-blue;
+                    width: 2rem;
+                    height: 2rem;
+                    line-height: 2rem;
+                    border-radius: 50%;
+
+                    &:hover {
+                        transform: rotate(90deg);
+                        color: variables.$clr-green;
+                    }
+                }
+            }
+
+
+            h2 {
+                @include mixins.titleText(1.3rem, 700, variables.$clr-black);
+            }
+
+            p {
+                @include mixins.graphText(1rem, 500, variables.$clr-black);
+            }
+        }
+
+        .overview-btn {
+            display: grid;
+            place-items: center;
+            position: absolute;
+            bottom: 0;
+            width: 3rem;
+            height: 3rem;
+            line-height: 3rem;
+            border-radius: 50%;
+            outline: none;
+            border: none;
+            background-color: variables.$clr-green;
+            bottom: 20px;
+            cursor: pointer;
+
+            &:hover {
+                border: variables.$border;
+            }
+
+            i {
+                color: variables.$clr-pink;
+                font-size: 1.5rem;
+            }
+        }
     }
 }

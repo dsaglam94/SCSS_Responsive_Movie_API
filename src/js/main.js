@@ -23,6 +23,8 @@
 const searchIcon = document.querySelector('.search-icon i');
 const searchInput = document.getElementById('search');
 const form = document.getElementById('form');
+const overviewBtn = document.querySelector('.overview-btn');
+const overviewCloseBtn = document.querySelector('.close-btn');
 
 searchIcon.addEventListener('click', () =>{
     searchInput.classList.toggle('active');
@@ -31,3 +33,18 @@ searchIcon.addEventListener('click', () =>{
     console.log('hello')
 });
 
+overviewBtn.addEventListener('click', () => {
+    const movieOverview = document.querySelector('.movie__overview');
+
+    movieOverview.classList.add('active');
+    overviewBtn.style.display = 'none';
+});
+
+overviewCloseBtn.addEventListener('click', () => {
+    const movieOverview = document.querySelector('.movie__overview');
+
+    movieOverview.classList.remove('active');
+    setTimeout(() => {
+        overviewBtn.style.display = 'grid';
+    }, 350);
+});
