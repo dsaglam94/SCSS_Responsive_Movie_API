@@ -1,5 +1,108 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap");
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
 body {
-  background-color: red;
+  background-color: #fff;
+  font-family: "Montserrat", sans-serif;
+  padding: 1em 2em;
+  min-height: 100vh;
+  font-size: 62.5%;
+}
+
+.header {
+  width: 100%;
+  text-align: center;
+  padding: 2em 1em;
+  background-color: #d6f6dd;
+  border-radius: 1rem;
+}
+.header__top-row {
+  width: 100%;
+}
+.header__top-row .logo {
+  text-transform: uppercase;
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #f4989c;
+  letter-spacing: 1px;
+}
+.header__top-row .search-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+  padding-block: 2em;
+  margin-top: 1em;
+}
+.header__top-row .search-icon .search-input {
+  position: absolute;
+  padding: 0.8em 2em;
+  outline: none;
+  border: none;
+  border-radius: 0.5rem;
+  transform: scaleX(0);
+  transition: all 0.25s ease;
+}
+.header__top-row .search-icon .search-input.active {
+  transform: scaleX(1);
+}
+.header__top-row .search-icon .search-input:focus {
+  background: #acecf7;
+}
+.header__top-row .search-icon .search-input::placeholder {
+  color: #000;
+}
+.header__top-row .search-icon i {
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: #f4989c;
+  z-index: 777;
+  transition: all 0.5s ease;
+}
+.header__top-row .search-icon i.active {
+  transform: translateX(90px) rotate(720deg);
+}
+.header .form {
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #000;
+  letter-spacing: 1px;
+  padding-block: 1em;
+  transform: scaleY(0);
+  display: none;
+  transform-origin: top;
+}
+.header .form.active {
+  transform: scaleY(1);
+  display: block;
+}
+.header .form label:where(:not(:first-of-type)) {
+  margin-left: 1em;
+}
+.header .random-btn {
+  cursor: pointer;
+  padding: 1em 3em;
+  outline: none;
+  border: none;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #000;
+  letter-spacing: 1px;
+  margin-top: 2em;
 }
 
 /*# sourceMappingURL=main.css.map */

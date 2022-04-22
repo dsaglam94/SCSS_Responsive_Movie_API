@@ -4,13 +4,116 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="./src/css/main.css">
+    <!-- Fontawesome CDN -->
+    <script src="https://kit.fontawesome.com/be05affc2e.js" crossorigin="anonymous"></script>
     <!-- Custom JS -->
     <script src="./src/js/main.js" defer></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="./src/css/main.css">
     <title>My Movie API</title>
 </head>
 <body>
-    <h1>hello world</h1>
+
+    <header class="header">
+
+        <div class="header__top-row">
+            <p class="logo">moviePicker <i class="fas fa-couch"></i></p>
+            <div class="search-icon">
+                <input type="search" id="search" class="search-input" placeholder="Search here">
+                <i class="fas fa-search"></i>
+            </div>
+        </div>
+
+
+
+        <form id="form" class="form">
+
+            <label for="filter">
+                Title:
+                <input type="radio" name="filter" id="title" value="title">
+            </label>
+            <label for="filter">
+                Genre:
+                <input type="radio" name="filter" id="title" value="genre">
+            </label>
+            <label for="filter">
+                Rating:
+                <input type="radio" name="filter" id="title" value="rating">
+            </label>
+
+        </form>
+
+        <button id="random-btn" class="random-btn">Surprise me!</button>
+    </header>
+
+
+
+
+    <!-- <div class="movie">
+        <div class="poster">
+            <img src="" alt="image">
+        </div>
+        <div class="movie-info">
+            <div class="title">hello</div>
+            <span class="rating">8.5</span>
+        </div>
+    </div>
+    <div class="movie">
+        <div class="poster">
+            <img src="" alt="image">
+        </div>
+        <div class="movie-info">
+            <div class="title">hello</div>
+            <span class="rating">8.5</span>
+        </div>
+    </div>
+    <div class="movie">
+        <div class="poster">
+            <img src="" alt="image">
+        </div>
+        <div class="movie-info">
+            <div class="title">hello</div>
+            <span class="rating">8.5</span>
+        </div>
+    </div>
+    <div class="movie">
+        <div class="poster">
+            <img src="" alt="image">
+        </div>
+        <div class="movie-info">
+            <div class="title">hello</div>
+            <span class="rating">8.5</span>
+        </div>
+    </div>
+    <div class="movie">
+        <div class="poster">
+            <img src="" alt="image">
+        </div>
+        <div class="movie-info">
+            <div class="title">hello</div>
+            <span class="rating">8.5</span>
+        </div>
+    </div>
+    <div class="movie">
+        <div class="poster">
+            <img src="" alt="image">
+        </div>
+        <div class="movie-info">
+            <div class="title">hello</div>
+            <span class="rating">8.5</span>
+        </div>
+    </div>
+    <div class="movie">
+        <div class="poster">
+            <img src="" alt="image">
+        </div>
+        <div class="movie-info">
+            <div class="title">hello</div>
+            <span class="rating">8.5</span>
+        </div>
+    </div> -->
+
+
+
 </body>
 </html>
