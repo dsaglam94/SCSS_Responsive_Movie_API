@@ -54,6 +54,7 @@ body {
   border-radius: 0.5rem;
   transform: scaleX(0);
   transition: all 0.25s ease;
+  box-shadow: inset 11px 11px 32px #d1d1d1, inset -11px -11px 32px #ffffff;
 }
 .header__top-row .search-icon .search-input.active {
   transform: scaleX(1);
@@ -68,11 +69,17 @@ body {
   cursor: pointer;
   font-size: 1.5rem;
   color: #f4989c;
+  width: 3rem;
+  height: 3rem;
+  line-height: 3rem;
+  border-radius: 50%;
+  background: #e0e0e0;
+  box-shadow: inset 11px 11px 32px #d1d1d1, inset -11px -11px 32px #ffffff;
   z-index: 777;
   transition: all 0.5s ease;
 }
 .header__top-row .search-icon i.active {
-  transform: translateX(90px) rotate(720deg);
+  transform: translateX(110px) rotate(720deg);
 }
 .header .form {
   text-transform: uppercase;
@@ -92,6 +99,31 @@ body {
 .header .form label:where(:not(:first-of-type)) {
   margin-left: 1em;
 }
+.header .form input[type=radio] {
+  transform: translateY(0.25em);
+  border: 2px solid #f4989c;
+  background-color: white;
+  appearance: none;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  position: relative;
+  cursor: pointer;
+}
+.header .form input[type=radio]::before {
+  content: "";
+  position: absolute;
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 50%;
+  background-color: #acecf7;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(0);
+}
+.header .form input[type=radio]:checked::before {
+  transform: translate(-50%, -50%) scale(1);
+}
 .header .random-btn {
   cursor: pointer;
   padding: 1em 3em;
@@ -102,7 +134,139 @@ body {
   font-weight: 600;
   color: #000;
   letter-spacing: 1px;
+  background-color: #acecf7;
+  border-radius: 0.5rem;
   margin-top: 2em;
+}
+
+.main {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  gap: 2rem;
+  padding-block: 2em;
+}
+.main .movie {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  width: 100%;
+  border-radius: 1rem;
+  position: relative;
+  overflow: hidden;
+  transition: scale 0.5s ease;
+}
+.main .movie:hover .movie__poster img {
+  transform: scale(1.1);
+}
+.main .movie__poster {
+  width: 100%;
+  overflow: hidden;
+  cursor: pointer;
+}
+.main .movie__poster img {
+  width: 100%;
+  height: 30rem;
+  object-fit: cover;
+  transition: all 0.5s ease;
+}
+.main .movie__content {
+  background-color: #d6f6dd;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 3em;
+  width: 100%;
+}
+.main .movie__content .title {
+  text-transform: uppercase;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #000;
+  letter-spacing: 1px;
+}
+.main .movie__content .rating {
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #000;
+  letter-spacing: 1px;
+}
+.main .movie__content .rating.green {
+  color: green;
+}
+.main .movie__content .rating.orange {
+  color: orange;
+}
+.main .movie__content .rating.red {
+  color: red;
+}
+.main .movie .movie__overview {
+  background-color: #f4989c;
+  position: absolute;
+  padding: 3em;
+  bottom: 0;
+  left: 0;
+  text-align: center;
+  transform: translateY(101%);
+  transition: transform 0.5s ease;
+}
+.main .movie .movie__overview.active {
+  transform: translateY(0);
+}
+.main .movie .movie__overview--header {
+  padding-inline: 1em;
+  margin-bottom: 2em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.main .movie .movie__overview--header .close-btn {
+  font-size: 1.3rem;
+  cursor: pointer;
+  background-color: #acecf7;
+  width: 2rem;
+  height: 2rem;
+  line-height: 2rem;
+  border-radius: 50%;
+}
+.main .movie .movie__overview--header .close-btn:hover {
+  transform: rotate(90deg);
+  color: #d6f6dd;
+}
+.main .movie .movie__overview h2 {
+  text-transform: uppercase;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #000;
+  letter-spacing: 1px;
+}
+.main .movie .movie__overview p {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #000;
+  letter-spacing: 1px;
+}
+.main .movie .overview-btn {
+  display: grid;
+  place-items: center;
+  position: absolute;
+  bottom: 0;
+  width: 3rem;
+  height: 3rem;
+  line-height: 3rem;
+  border-radius: 50%;
+  outline: none;
+  border: none;
+  background-color: #d6f6dd;
+  bottom: 20px;
+  cursor: pointer;
+}
+.main .movie .overview-btn:hover {
+  border: 2px solid #f4989c;
+}
+.main .movie .overview-btn i {
+  color: #f4989c;
+  font-size: 1.5rem;
 }
 
 /*# sourceMappingURL=main.css.map */
