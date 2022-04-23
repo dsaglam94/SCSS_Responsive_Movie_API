@@ -151,7 +151,7 @@ body {
 }
 
 .main { 
-    @include mixins.grid(12rem);
+    @include mixins.grid(15rem);
     padding-block: 2em;
 
     .movie {
@@ -176,6 +176,7 @@ body {
 
             img {
                 width: 100%;
+                height: 50vh;
                 object-fit: cover;
                 transition: all .5s ease;
 
@@ -191,7 +192,8 @@ body {
             width: 100%;
 
             .title {
-                @include mixins.titleText(1rem, 600, variables.$clr-black);
+                @include mixins.titleText(.7rem, 600, variables.$clr-black);
+                // display: none;
             }
 
             .rating {
