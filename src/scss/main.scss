@@ -151,7 +151,7 @@ body {
 }
 
 .main { 
-    @include mixins.grid(15rem);
+    @include mixins.grid(12rem);
     padding-block: 2em;
 
     .movie {
