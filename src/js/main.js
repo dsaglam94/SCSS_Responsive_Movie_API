@@ -23,7 +23,7 @@ const overviewCloseBtn = document.querySelector('.close-btn');
 const main = document.querySelector('#main');
 const randomBtn = document.getElementById('random-btn');
 
-// const api_mostPopularMovies_url = 'https://imdb-api.com/en/API/MostPopularMovies/k_lbf73nbh';
+const api_mostPopularMovies_url = 'https://imdb-api.com/en/API/MostPopularMovies/k_lbf73nbh';
 
 // const api_searchMovieTitle_url = 'https://imdb-api.com/en/API/SearchMovie/k_lbf73nbh/'
 
@@ -134,7 +134,6 @@ function showTop250Movies(data) {
                         <span class="rating ${showColor(el.imDbRating)}">${hasRating(el.imDbRating)}</span>
                     </div>
                 </div>
-    
         `
     })
 
@@ -156,13 +155,14 @@ async function getMostPopular() {
 // Show the most popular movies on the main page 
 function showMostPopular(data) {
 
-    main.innerHTML = '';
+    // main.innerHTML = '';
     // console.log(data.items)
 
     data.items.forEach(el => {
+        const popularMovies = document.querySelector('.popular-movies');
         const movieEl = document.createElement('div');
         movieEl.classList.add('movie');
-        movieEl.innerHTML = `
+        movieEl.innerHTML += `
         <div class="movie__content">
             <p class="title">
                 ${shortenTitle(el.title)}
@@ -176,7 +176,7 @@ function showMostPopular(data) {
         </div>
     
         `
-        main.appendChild(movieEl);
+        popularMovies.appendChild(movieEl);
     })
 
 }
@@ -213,7 +213,6 @@ function hasRating(ratingNum) {
 }
 
 let swiper = new Swiper(".top-movies__swiper", {
-    slidesPerView: 4,
     spaceBetween: 20,
     slidesPerGroup: 3,
     loop: true,
@@ -225,6 +224,20 @@ let swiper = new Swiper(".top-movies__swiper", {
       nextEl: ".swiper-button-next",
       prevEl: ".swiper-button-prev",
     },
+    breakpoints: {
+        400: {
+          slidesPerView: 2,
+        },
+        768: {
+          slidesPerView: 3,
+        },
+        1024: {
+          slidesPerView: 5,
+        },
+        1300: {
+            slidesPerView: 6,
+        }
+      },
   });
 
     // <div class="movie__overview">
