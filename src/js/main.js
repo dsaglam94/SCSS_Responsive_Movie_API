@@ -24,10 +24,10 @@ const main = document.querySelector('#main');
 const randomBtn = document.getElementById('random-btn');
 
 const api_mostPopularMovies_url = 'https://imdb-api.com/en/API/MostPopularMovies/k_lbf73nbh';
-
-// const api_searchMovieTitle_url = 'https://imdb-api.com/en/API/SearchMovie/k_lbf73nbh/'
-
 const api_top250Movies_url = 'https://imdb-api.com/en/API/Top250Movies/k_lbf73nbh';
+
+const api_searchMovieTitle_url = 'https://imdb-api.com/en/API/SearchMovie/k_lbf73nbh/'
+
 
 window.addEventListener('load', () => {
 
@@ -130,7 +130,9 @@ function showTop250Movies(data) {
                         <img src="${el.image}" alt="${el.title}">
                     </div>
                     <div class="top-movies__content">
-                        <p class="${el.title}">Die Hard</p>
+                        <p class="title">
+                            ${shortenTitle(el.title)}
+                        </p>
                         <span class="rating ${showColor(el.imDbRating)}">${hasRating(el.imDbRating)}</span>
                     </div>
                 </div>
@@ -154,9 +156,6 @@ async function getMostPopular() {
 }
 // Show the most popular movies on the main page 
 function showMostPopular(data) {
-
-    // main.innerHTML = '';
-    // console.log(data.items)
 
     data.items.forEach(el => {
         const popularMovies = document.querySelector('.popular-movies');
@@ -240,35 +239,4 @@ let swiper = new Swiper(".top-movies__swiper", {
       },
   });
 
-    // <div class="movie__overview">
-    //     <div class="movie__overview--header">
-    //         <h2>Overview</h2>
-    //         <i class="close-btn fas fa-times"></i>
-    //     </div>
-    //     <p>
-    //         Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius itaque in maxime! Eveniet quas harum non, laborum provident iure voluptas?Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius itaque in maxime! Eveniet quas harum non, laborum provident iure voluptas?
-    //     </p>
-    // </div>
-    // <button class="overview-btn" aria-label="shows overview of the movie">
-    //     <i class="fas fa-question"></i>
-    // </button>
-    // console.log(data.items)
-
-
-
-
-// overviewBtn.addEventListener('click', () => {
-//     const movieOverview = document.querySelector('.movie__overview');
-
-//     movieOverview.classList.add('active');
-//     overviewBtn.style.display = 'none';
-// });
-
-// overviewCloseBtn.addEventListener('click', () => {
-//     const movieOverview = document.querySelector('.movie__overview');
-
-//     movieOverview.classList.remove('active');
-//     setTimeout(() => {
-//         overviewBtn.style.display = 'grid';
-//     }, 350);
-// });
+ 

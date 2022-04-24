@@ -152,7 +152,8 @@ body {
 }
 
 .popular-movies { 
-    @include mixins.grid(25rem);
+    @include mixins.grid(15rem);
+    
     padding: 2em;
 
     .movie {
@@ -160,7 +161,7 @@ body {
         flex-flow: column;
         align-items: center;
         width: 100%;
-        height: 500px;
+        // height: 450px;
         // padding-inline: 10em;
         // position: relative;
         overflow: hidden;
@@ -172,13 +173,13 @@ body {
         }
 
         &__poster {
-            // width: 70%;
+            // width: 100%;
+            // flex: 2 1 90rem;
             overflow: hidden;
             cursor: pointer;
 
             img {
                 width: 100%;
-                // height: 50vh;
                 object-fit: cover;
                 transition: all .5s ease;
 
