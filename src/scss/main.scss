@@ -18,7 +18,7 @@ html {
 body {
     background-color: variables.$clr-white;
     font-family: 'Montserrat', sans-serif;
-    // padding: 1em 2em;
+    background-color: variables.$clr-black;
     min-height: 100vh;
     font-size: 62.5%;
 }
@@ -28,13 +28,13 @@ body {
     width: 100%;
     text-align: center;
     padding: 2em 1em;
-    background-color: variables.$clr-green;
+    background-color: variables.$clr-black;
 
     &__top-row {
         width: 100%;
 
         .logo {
-            @include mixins.titleText(1.5rem, 500, variables.$clr-pink);
+            @include mixins.graphText(1.5rem, 500, variables.$clr-accent);
         }
 
         .search-icon {
@@ -62,7 +62,7 @@ body {
                 }
 
                 &:focus {
-                    background: variables.$clr-blue;
+                    background: variables.$clr-accent;
                 }
 
                 &::placeholder {
@@ -73,12 +73,12 @@ body {
             i {
                 cursor: pointer;
                 font-size: 1rem;
-                color: variables.$clr-pink;
+                color: variables.$clr-white;
                 width: 2.5rem;
                 height: 2.5rem;
                 line-height: 2.5rem;
                 border-radius: 50%;
-                background: #e0e0e0;
+                background-color: variables.$clr-accent;
                 z-index: 777;
                 transition: all .5s ease;
 
@@ -102,6 +102,10 @@ body {
             display: block;
         }
 
+        label {
+            color: variables.$clr-neutral-gray-200;
+        }
+
         label:where(:not(:first-of-type)) {
             margin-left: 1em;
         }
@@ -123,7 +127,7 @@ body {
                 width: .55rem;
                 height: .55rem;
                 border-radius: 50%;
-                background-color: variables.$clr-blue;
+                background-color: variables.$clr-accent;
                 left: 50%;
                 top: 50%;
                 transform: translate(-50%,-50%) scale(0);
@@ -149,7 +153,6 @@ body {
 
 .main { 
     @include mixins.grid(20rem);
-    padding: 2em;
 
     .movie {
         display: flex;

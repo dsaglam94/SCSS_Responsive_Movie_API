@@ -1,10 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
 
+$clr-accent: #00C9AF;
 $clr-white: #fff;
-$clr-black: #000;
+$clr-black: #212121;
+// netural colors
+$clr-neutral-gray-700: #343332;
+$clr-neutral-gray-200: #D3D2D1;
+$clr-neutral-gray-400: #A8A7A6;
+$clr-neutral-gray-600: #7F7E7D;
 $clr-green: #d6f6dd;
 $clr-purple: #dac4f7;
 $clr-pink: #f4989c;
 $clr-blue: #acecf7;
 
-$border: 2px solid $clr-pink;
+$border: 2px solid $clr-accent;
