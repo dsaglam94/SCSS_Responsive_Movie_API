@@ -49,6 +49,15 @@
   padding-inline: 1em;
   font-size: 0.7rem;
 }
+.top-movies__swiper .slides .slide .top-movies__content .rating.green {
+  color: green;
+}
+.top-movies__swiper .slides .slide .top-movies__content .rating.orange {
+  color: orange;
+}
+.top-movies__swiper .slides .slide .top-movies__content .rating.red {
+  color: red;
+}
 .top-movies__swiper .swiper-button-prev,
 .top-movies__swiper .swiper-button-next {
   top: 40%;
