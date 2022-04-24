@@ -1,4 +1,31 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap");
+.top-movies__title {
+  font-size: 2rem;
+  text-align: center;
+}
+.top-movies__swiper {
+  width: 100%;
+  height: 100%;
+}
+.top-movies__swiper .slides .slide {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: space-between;
+}
+.top-movies__swiper .slides .slide .top-movies__poster {
+  width: 100%;
+}
+.top-movies__swiper .slides .slide .top-movies__poster img {
+  display: block;
+  width: 100%;
+  object-fit: cover;
+}
+.top-movies__swiper .swiper-button-prev,
+.top-movies__swiper .swiper-button-next {
+  top: 40%;
+}
+
 *,
 *::before,
 *::after {
