@@ -25,7 +25,6 @@ body {
   text-align: center;
   padding: 2em 1em;
   background-color: #d6f6dd;
-  border-radius: 1rem;
 }
 .header__top-row {
   width: 100%;
@@ -141,7 +140,7 @@ body {
 
 .main {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
   gap: 2rem;
   padding-block: 2em;
 }
@@ -165,7 +164,6 @@ body {
 }
 .main .movie__poster img {
   width: 100%;
-  height: 50vh;
   object-fit: cover;
   transition: all 0.5s ease;
 }

@@ -23,9 +23,9 @@ const overviewCloseBtn = document.querySelector('.close-btn');
 const main = document.querySelector('#main');
 const randomBtn = document.getElementById('random-btn');
 
-const api_mostPopularMovies_url = 'https://imdb-api.com/en/API/MostPopularMovies/k_lbf73nbh';
+// const api_mostPopularMovies_url = 'https://imdb-api.com/en/API/MostPopularMovies/k_lbf73nbh';
 
-const api_searchMovieTitle_url = 'https://imdb-api.com/en/API/SearchMovie/k_lbf73nbh/'
+// const api_searchMovieTitle_url = 'https://imdb-api.com/en/API/SearchMovie/k_lbf73nbh/'
 
 window.addEventListener('load', () => {
 
