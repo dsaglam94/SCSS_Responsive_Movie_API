@@ -124,12 +124,16 @@ function showMostPopular(data) {
         movieEl.classList.add('movie');
         movieEl.innerHTML = `
         <div class="movie__content">
-        <p class="title">${shortenTitle(el.title)}</p>
-        <span class="rating ${showColor(el.imDbRating)}">${hasRating(el.imDbRating)}</span>
-    </div>
-    <div class="movie__poster">
-        <img src="${el.image}" alt="${el.title}">
-    </div>
+            <p class="title">
+                ${shortenTitle(el.title)}
+            </p>
+            <span class="rating ${showColor(el.imDbRating)}">
+                ${hasRating(el.imDbRating)}
+            </span>
+        </div>
+        <div class="movie__poster">
+            <img src="${el.image}" alt="${el.title}">
+        </div>
     
         `
         main.appendChild(movieEl);
@@ -167,6 +171,21 @@ function hasRating(ratingNum) {
         return ratingNum;
     }
 }
+
+let swiper = new Swiper(".top-movies__swiper", {
+    slidesPerView: 4,
+    spaceBetween: 20,
+    slidesPerGroup: 3,
+    loop: true,
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+  });
 
     // <div class="movie__overview">
     //     <div class="movie__overview--header">
