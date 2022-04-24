@@ -15,7 +15,6 @@ html {
 body {
   background-color: #fff;
   font-family: "Montserrat", sans-serif;
-  padding: 1em 2em;
   min-height: 100vh;
   font-size: 62.5%;
 }
@@ -41,19 +40,16 @@ body {
   align-items: center;
   justify-content: center;
   position: relative;
-  width: 100%;
-  padding-block: 2em;
-  margin-top: 1em;
 }
 .header__top-row .search-icon .search-input {
-  position: absolute;
-  padding: 0.8em 2em;
+  position: relative;
+  right: -10px;
+  padding: 0.5em 2em;
   outline: none;
   border: none;
-  border-radius: 0.5rem;
+  transform-origin: right;
   transform: scaleX(0);
   transition: all 0.25s ease;
-  box-shadow: inset 11px 11px 32px #d1d1d1, inset -11px -11px 32px #ffffff;
 }
 .header__top-row .search-icon .search-input.active {
   transform: scaleX(1);
@@ -66,19 +62,15 @@ body {
 }
 .header__top-row .search-icon i {
   cursor: pointer;
-  font-size: 1.5rem;
+  font-size: 1rem;
   color: #f4989c;
-  width: 3rem;
-  height: 3rem;
-  line-height: 3rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  line-height: 2.5rem;
   border-radius: 50%;
   background: #e0e0e0;
-  box-shadow: inset 11px 11px 32px #d1d1d1, inset -11px -11px 32px #ffffff;
   z-index: 777;
   transition: all 0.5s ease;
-}
-.header__top-row .search-icon i.active {
-  transform: translateX(110px) rotate(720deg);
 }
 .header .form {
   text-transform: uppercase;
@@ -142,14 +134,13 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
   gap: 2rem;
-  padding-block: 2em;
+  padding: 2em;
 }
 .main .movie {
   display: flex;
   flex-flow: column;
   align-items: center;
   width: 100%;
-  border-radius: 1rem;
   position: relative;
   overflow: hidden;
   transition: scale 0.5s ease;
@@ -265,6 +256,14 @@ body {
 .main .movie .overview-btn i {
   color: #f4989c;
   font-size: 1.5rem;
+}
+
+@media (min-width: 710px) {
+  .header__top-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
 }
 
 /*# sourceMappingURL=main.css.map */

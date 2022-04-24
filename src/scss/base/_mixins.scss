@@ -18,3 +18,9 @@
     color: $color;
     letter-spacing: 1px;
 }
+
+@mixin media-710 {
+    @media (min-width: 710px) {
+        @content;
+    }
+}

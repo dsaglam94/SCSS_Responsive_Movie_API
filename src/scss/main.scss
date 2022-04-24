@@ -17,7 +17,7 @@ html {
 body {
     background-color: variables.$clr-white;
     font-family: 'Montserrat', sans-serif;
-    padding: 1em 2em;
+    // padding: 1em 2em;
     min-height: 100vh;
     font-size: 62.5%;
 }
@@ -41,21 +41,20 @@ body {
             align-items: center;
             justify-content: center;
             position: relative;
-            width: 100%;
-            padding-block: 2em;
-            margin-top: 1em;
+            // margin-left: auto;
+            // width: 100%;
+            // padding-block: 2em;
+            // margin-top: 1em;
 
             .search-input {
-                position: absolute;
-                padding: .8em 2em;
+                position: relative;
+                right: -10px;
+                padding: .5em 2em;
                 outline: none;
                 border: none;
-                border-radius: .5rem;
-                // transform-origin: right;
+                transform-origin: right;
                 transform: scaleX(0);
                 transition: all .25s ease;
-                box-shadow: inset 11px 11px 32px #d1d1d1,
-                inset -11px -11px 32px #ffffff;
 
                 &.active {
                     transform: scaleX(1);
@@ -72,21 +71,19 @@ body {
 
             i {
                 cursor: pointer;
-                font-size: 1.5rem;
+                font-size: 1rem;
                 color: variables.$clr-pink;
-                width: 3rem;
-                height: 3rem;
-                line-height: 3rem;
+                width: 2.5rem;
+                height: 2.5rem;
+                line-height: 2.5rem;
                 border-radius: 50%;
                 background: #e0e0e0;
-                box-shadow: inset 11px 11px 32px #d1d1d1,
-                inset -11px -11px 32px #ffffff;
                 z-index: 777;
                 transition: all .5s ease;
 
-                &.active {
-                    transform: translateX(110px) rotate(720deg);
-                }
+                // &.active {
+                //     transform: translateX(110px) rotate(720deg);
+                // }
             }
         }
     }
@@ -151,14 +148,13 @@ body {
 
 .main { 
     @include mixins.grid(20rem);
-    padding-block: 2em;
+    padding: 2em;
 
     .movie {
         display: flex;
         flex-flow: column;
         align-items: center;
         width: 100%;
-        border-radius: 1rem;
         position: relative;
         overflow: hidden;
         transition: scale .5s ease;
@@ -282,6 +278,17 @@ body {
                 color: variables.$clr-pink;
                 font-size: 1.5rem;
             }
+        }
+    }
+}
+
+@include mixins.media-710 {
+    .header {
+        
+        &__top-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
         }
     }
 }
