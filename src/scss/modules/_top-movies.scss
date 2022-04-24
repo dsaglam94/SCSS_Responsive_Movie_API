@@ -4,13 +4,18 @@
 .top-movies {
 
     &__title {
+        color: variables.$clr-white;
         font-size: 2rem;
         text-align: center;
+        margin-block: 1em;
+        text-transform: uppercase;
+        letter-spacing: 2px;
     }
 
     &__swiper {
+        background-color: variables.$clr-neutral-gray-700;
         width: 100%;
-        height: 100%;
+        padding: 2em;
 
         .slides {
             
@@ -18,15 +23,42 @@
                 display: flex;
                 flex-flow: column;
                 align-items: center;
-                justify-content: space-between;
+                cursor: pointer;
+
+                &:hover img {
+                    transform: scale(1.05);
+                }
 
                 .top-movies__poster {
                     width: 100%;
+                    overflow: hidden;
 
                     img {
                         display: block;
                         width: 100%;
                         object-fit: cover;
+                        transition: all .5s ease;
+                        user-select: none;
+                    }
+                }
+
+                .top-movies__content {
+                    background-color: black;
+                    color: white;
+                    width: 100%;
+                    padding-block: 1em;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+
+                    .title {
+                        font-size: 1.3rem;
+                        padding-inline: 1em ;
+                    }
+
+                    .rating {
+                        padding-inline: 1em;
+                        font-size: .7rem;
                     }
                 }
             }
