@@ -59,6 +59,18 @@
                     .rating {
                         padding-inline: 1em;
                         font-size: .7rem;
+
+                        &.green {
+                            color: green;
+                        }
+        
+                        &.orange {
+                            color: orange;
+                        }
+        
+                        &.red {
+                            color: red;
+                        }
                     }
                 }
             }

@@ -27,9 +27,12 @@ const randomBtn = document.getElementById('random-btn');
 
 // const api_searchMovieTitle_url = 'https://imdb-api.com/en/API/SearchMovie/k_lbf73nbh/'
 
+const api_top250Movies_url = 'https://imdb-api.com/en/API/Top250Movies/k_lbf73nbh';
+
 window.addEventListener('load', () => {
 
     getMostPopular();
+    getTop250Movies();
 
 });
 
@@ -98,6 +101,43 @@ function showSearchedTitle(data) {
         `
         main.appendChild(movieEl);
     })
+}
+
+async function getTop250Movies() {
+    try {
+        const response = await fetch(api_top250Movies_url);
+        const data = await response.json();
+        showTop250Movies(data);
+
+        // console.log(data.items[0].title);
+    } catch (error) {
+        console.error(error);
+        console.log('error');
+    }
+}
+// Show the most popular movies on the main page 
+function showTop250Movies(data) {
+
+    // console.log(data.items)
+
+    data.items.forEach(el => {
+        const test = document.querySelector('.top-movies__swiper');
+        const slides = document.querySelector('.slides');
+
+        slides.innerHTML += `
+        <div class="slide swiper-slide">
+                    <div class="top-movies__poster">
+                        <img src="${el.image}" alt="${el.title}">
+                    </div>
+                    <div class="top-movies__content">
+                        <p class="${el.title}">Die Hard</p>
+                        <span class="rating ${showColor(el.imDbRating)}">${hasRating(el.imDbRating)}</span>
+                    </div>
+                </div>
+    
+        `
+    })
+
 }
 
 
