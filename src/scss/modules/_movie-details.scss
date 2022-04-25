@@ -14,6 +14,7 @@
     padding: 3em 4em;
     background-color: variables.$clr-neutral-gray-700;
     color: variables.$clr-white;
+    box-shadow: 1px 1px 1px 100vw rgba(0,0,0,0.9);
     
 
     &__container {
@@ -80,7 +81,8 @@
                     gap: 1rem;
 
                     span {
-                        font-size: .7rem;
+                        letter-spacing: 1px;
+                        font-size: .8rem;
                         font-weight: bolder;
                         text-transform: uppercase;
                     }
@@ -89,7 +91,7 @@
                 .title {
 
                     h1 {
-                        font-size: 2rem;
+                        font-size: 1.7rem;
                         text-transform: uppercase;
                     }
                 }
@@ -97,7 +99,7 @@
                 .crew {
 
                     p {
-                        font-size: 1.5rem;
+                        font-size: 1.3rem;
                         text-transform: capitalize;
                     }
 
@@ -129,11 +131,48 @@
                     }
                 }
             }
+
+            .sub-info { 
+                width: 100%;
+                display: flex;
+                align-items: center;
+                gap: 3rem;
+
+                .genres,
+                .director {
+                    display: flex;
+                    align-items: center;
+                    gap: 1rem;
+
+                    p {
+                        font-size: 1.1rem;
+                    }
+                }
+
+                span {
+                    letter-spacing: 1px;
+                    font-size: .8rem;
+                    font-weight: bolder;
+                    text-transform: uppercase;
+                }
+
+
+            }
         }
 
         .plot {
+            line-height: 1.5;
+            letter-spacing: 1px;
             font-size: 1rem;
             padding-block: 2em;
         }
+
+            iframe {
+                width: 60%;
+                object-fit: cover;
+                aspect-ratio: 16 / 9;
+            }
+        
+        
     }
 }
