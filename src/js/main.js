@@ -22,14 +22,15 @@ const overviewBtn = document.querySelector('.overview-btn');
 const overviewCloseBtn = document.querySelector('.close-btn');
 const main = document.querySelector('#main');
 const randomBtn = document.getElementById('random-btn');
+const movieDetails = document.querySelector('.movie-details');
 
-// const api_mostPopularMovies_url = 'https://imdb-api.com/en/API/MostPopularMovies/k_lbf73nbh';
+const api_mostPopularMovies_url = 'https://imdb-api.com/en/API/MostPopularMovies/k_lbf73nbh';
 // const api_top250Movies_url = 'https://imdb-api.com/en/API/Top250Movies/k_lbf73nbh';
 
 // const api_searchMovieTitle_url = 'https://imdb-api.com/en/API/SearchMovie/k_lbf73nbh/';
 // const moviePoster = document.querySelector('.movie__poster');
 
-
+// Get the movies on page load
 window.addEventListener('load', () => {
 
     getMostPopular();
@@ -37,13 +38,19 @@ window.addEventListener('load', () => {
 
 });
 
+// Creating DOM elements dynamically. It is not possible to add eventlistener to something not exist.
+// Body listens for click and checks if the condition is true
+// If yes, event happens
 document.body.addEventListener('click', (e) => {
 
    if (e.target.id === 'movie__img') {
-       console.log('it worked!')
+       let data = e.target.alt
+        getMovieDetails(data);
+        movieDetails.style.display = 'block';
+   } else if (e.target.id === 'movieDetails__close-btn') {
+        movieDetails.style.display = 'none';
    }
 });
-
 
 searchIcon.addEventListener('click', searchFilter);
 
@@ -76,40 +83,104 @@ function searchFilter(){
 
 
 
-async function searchMovietitle(title) {
+// async function searchMovietitle(title) {
+//     try {
+
+//         const response = await fetch(api_searchMovieTitle_url+title);
+//         const data = await response.json();
+//         // console.log(data)
+//         showSearchedTitle(data);
+
+//     } catch (error) {
+//         console.error(error);
+//         console.log('error');
+//     }
+// }
+
+// function showSearchedTitle(data) {
+//     main.innerHTML = '';
+//     // console.log(data.items)
+
+//     data.results.forEach(el => {
+//         const movieEl = document.createElement('div');
+//         movieEl.classList.add('movie');
+//         movieEl.innerHTML = `
+//         <div class="movie__content">
+//         <p class="title">${shortenTitle(el.title)}</p>
+//         <span class="rating ${showColor(el.imDbRating)}">${hasRating(el.imDbRating)}</span>
+//     </div>
+//     <div class="movie__poster">
+//         <img src="${el.image}" alt="${el.title}">
+//     </div>
+    
+//         `
+//         main.appendChild(movieEl);
+//     })
+// }
+
+// Data comes when the user clicks on poster images. 
+// Images return valid IMDb ID
+// For now I had to attach the ID to "alt attribute" so it's not shown in the UI but still reachable
+// Then fetch the data needed through this ID
+async function getMovieDetails(data) {
+    const url = `https://imdb-api.com/en/API/Title/k_lbf73nbh/${data}`;
+
     try {
-
-        const response = await fetch(api_searchMovieTitle_url+title);
-        const data = await response.json();
-        // console.log(data)
-        showSearchedTitle(data);
-
+        const response = await fetch(url);
+        const newData = await response.json();
+        showMovieDetails(newData);
+        // console.log(newData);
+        
     } catch (error) {
         console.error(error);
-        console.log('error');
+        console.log('Movie Details Error');
     }
+
 }
 
-function showSearchedTitle(data) {
-    main.innerHTML = '';
-    // console.log(data.items)
+// Create necessary elements in DOM and append them in the existing element
+// Show the movie details 
+function showMovieDetails(data) {
+    console.log(data)
+    const movieDetailsContainer = document.querySelector('.movie-details__container');
 
-    data.results.forEach(el => {
-        const movieEl = document.createElement('div');
-        movieEl.classList.add('movie');
-        movieEl.innerHTML = `
-        <div class="movie__content">
-        <p class="title">${shortenTitle(el.title)}</p>
-        <span class="rating ${showColor(el.imDbRating)}">${hasRating(el.imDbRating)}</span>
+    movieDetailsContainer.innerHTML = `
+    <div class="close-btn">
+        <i id="movieDetails__close-btn" class="fas fa-times"></i>
     </div>
-    <div class="movie__poster">
-        <img src="${el.image}" alt="${el.title}">
-    </div>
-    
-        `
-        main.appendChild(movieEl);
-    })
+    <div class="movie__info">
+                <div class="movie__poster">
+                    <img src="${data.image}" alt="">
+                </div>
+                <div class="movie__info--text">
+                    <div class="title">
+                        <span>Title:</span>
+                        <h1>${data.title}</h1>
+                    </div>
+                    <div class="crew">
+                        <span>Crew: </span>
+                        <p>${data.stars}</p>
+                    </div>
+                    <div class="rating">
+                        <span>rating: </span>
+                        <p class="green">${data.imDbRating}</p>
+                    </div>
+                    <div class="year">
+                        <span>Year: </span>
+                        <p>${data.year}</p>
+                    </div>
+                </div>
+            </div>
+            <p class="plot">
+                ${data.plot}
+            </p>
+            <iframe width="460" height="215" src="https://www.youtube.com/embed/mqqft2x_Aa4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    `
+
+
 }
+
+
 
 async function getTop250Movies() {
     try {
@@ -120,16 +191,17 @@ async function getTop250Movies() {
         // console.log(data.items[0].title);
     } catch (error) {
         console.error(error);
-        console.log('error');
+        console.log('Top 250 Movies Error');
     }
 }
+
+// Create necessary elements in DOM and append them in the existing element
 // Show the most popular movies on the main page 
 function showTop250Movies(data) {
 
     // console.log(data.items)
 
     data.items.forEach(el => {
-        const test = document.querySelector('.top-movies__swiper');
         const slides = document.querySelector('.slides');
 
         slides.innerHTML += `
@@ -162,6 +234,7 @@ async function getMostPopular() {
         console.log('error');
     }
 }
+// Create necessary elements in DOM and append them in the existing element
 // Show the most popular movies on the main page 
 function showMostPopular(data) {
 
@@ -179,7 +252,7 @@ function showMostPopular(data) {
             </span>
         </div>
         <div class="movie__poster">
-            <img id="movie__img" src="${el.image}" alt="${el.title}">
+            <img id="movie__img" src="${el.image}" alt="${el.id}">
         </div>
     
         `

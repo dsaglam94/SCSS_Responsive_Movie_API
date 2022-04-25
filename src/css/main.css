@@ -66,11 +66,12 @@
 .movie-details {
   display: none;
   width: 85%;
-  position: absolute;
+  min-height: 80vh;
+  position: fixed;
   z-index: 1200;
-  top: 0;
+  top: 50%;
   left: 50%;
-  transform: translate(-50%);
+  transform: translate(-50%, -50%);
   padding: 3em 4em;
   background-color: #343332;
   color: #fff;
@@ -84,7 +85,6 @@
 }
 .movie-details__container .close-btn {
   width: 100%;
-  margin-bottom: 3em;
   display: flex;
   justify-content: flex-end;
 }
@@ -110,7 +110,7 @@
   justify-content: space-between;
 }
 .movie-details__container .movie__info .movie__poster {
-  width: 30%;
+  width: 20%;
 }
 .movie-details__container .movie__info .movie__poster img {
   width: 100%;
@@ -121,7 +121,7 @@
   flex-direction: column;
   align-items: flex-start;
   margin-bottom: auto;
-  gap: 2rem;
+  gap: 1.5rem;
   width: 100%;
   margin-left: 5em;
   letter-spacing: 1px;
@@ -138,7 +138,7 @@
 .movie-details__container .movie__info--text .crew span,
 .movie-details__container .movie__info--text .rating span,
 .movie-details__container .movie__info--text .year span {
-  font-size: 1rem;
+  font-size: 0.7rem;
   font-weight: bolder;
   text-transform: uppercase;
 }
@@ -166,7 +166,7 @@
   font-size: 1.1rem;
 }
 .movie-details__container .plot {
-  font-size: 1.3rem;
+  font-size: 1rem;
   padding-block: 2em;
 }
 
