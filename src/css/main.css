@@ -63,6 +63,113 @@
   color: #00C9AF;
 }
 
+.movie-details {
+  display: none;
+  width: 85%;
+  position: absolute;
+  z-index: 1200;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%);
+  padding: 3em 4em;
+  background-color: #343332;
+  color: #fff;
+}
+.movie-details__container {
+  width: 100%;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+}
+.movie-details__container .close-btn {
+  width: 100%;
+  margin-bottom: 3em;
+  display: flex;
+  justify-content: flex-end;
+}
+.movie-details__container .close-btn i {
+  display: inline-block;
+  font-size: 1.2rem;
+  width: 2rem;
+  height: 2rem;
+  line-height: 2rem;
+  background-color: #A8A7A6;
+  color: #fff;
+  border-radius: 50%;
+  text-align: center;
+  cursor: pointer;
+}
+.movie-details__container .close-btn i:hover {
+  color: #00C9AF;
+}
+.movie-details__container .movie__info {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.movie-details__container .movie__info .movie__poster {
+  width: 30%;
+}
+.movie-details__container .movie__info .movie__poster img {
+  width: 100%;
+  object-fit: cover;
+}
+.movie-details__container .movie__info--text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: auto;
+  gap: 2rem;
+  width: 100%;
+  margin-left: 5em;
+  letter-spacing: 1px;
+}
+.movie-details__container .movie__info--text .title,
+.movie-details__container .movie__info--text .crew,
+.movie-details__container .movie__info--text .rating,
+.movie-details__container .movie__info--text .year {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.movie-details__container .movie__info--text .title span,
+.movie-details__container .movie__info--text .crew span,
+.movie-details__container .movie__info--text .rating span,
+.movie-details__container .movie__info--text .year span {
+  font-size: 1rem;
+  font-weight: bolder;
+  text-transform: uppercase;
+}
+.movie-details__container .movie__info--text .title h1 {
+  font-size: 2rem;
+  text-transform: uppercase;
+}
+.movie-details__container .movie__info--text .crew p {
+  font-size: 1.5rem;
+  text-transform: capitalize;
+}
+.movie-details__container .movie__info--text .rating p {
+  font-size: 1.1rem;
+}
+.movie-details__container .movie__info--text .rating p.green {
+  color: green;
+}
+.movie-details__container .movie__info--text .rating p.orange {
+  color: orange;
+}
+.movie-details__container .movie__info--text .rating p.red {
+  color: red;
+}
+.movie-details__container .movie__info--text .year p {
+  font-size: 1.1rem;
+}
+.movie-details__container .plot {
+  font-size: 1.3rem;
+  padding-block: 2em;
+}
+
 *,
 *::before,
 *::after {
@@ -197,13 +304,16 @@ body {
   margin-top: 2em;
 }
 
-.popular-movies {
+.main {
+  position: relative;
+}
+.main .popular-movies {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
   gap: 2rem;
   padding: 2em;
 }
-.popular-movies .movie {
+.main .popular-movies .movie {
   display: flex;
   flex-flow: column;
   align-items: center;
@@ -211,19 +321,20 @@ body {
   overflow: hidden;
   transition: scale 0.5s ease;
 }
-.popular-movies .movie:hover .movie__poster img {
+.main .popular-movies .movie:hover .movie__poster img {
   transform: scale(1.05);
 }
-.popular-movies .movie__poster {
+.main .popular-movies .movie__poster {
+  width: 100%;
   overflow: hidden;
   cursor: pointer;
 }
-.popular-movies .movie__poster img {
+.main .popular-movies .movie__poster img {
   width: 100%;
   object-fit: cover;
   transition: all 0.5s ease;
 }
-.popular-movies .movie__content {
+.main .popular-movies .movie__content {
   background-color: #d6f6dd;
   display: flex;
   align-items: center;
@@ -231,30 +342,30 @@ body {
   padding: 3em;
   width: 100%;
 }
-.popular-movies .movie__content .title {
+.main .popular-movies .movie__content .title {
   text-transform: uppercase;
   font-size: 0.7rem;
   font-weight: 600;
   color: #212121;
   letter-spacing: 1px;
 }
-.popular-movies .movie__content .rating {
+.main .popular-movies .movie__content .rating {
   text-transform: uppercase;
   font-size: 0.9rem;
   font-weight: 600;
   color: #212121;
   letter-spacing: 1px;
 }
-.popular-movies .movie__content .rating.green {
+.main .popular-movies .movie__content .rating.green {
   color: green;
 }
-.popular-movies .movie__content .rating.orange {
+.main .popular-movies .movie__content .rating.orange {
   color: orange;
 }
-.popular-movies .movie__content .rating.red {
+.main .popular-movies .movie__content .rating.red {
   color: red;
 }
-.popular-movies .movie .movie__overview {
+.main .popular-movies .movie .movie__overview {
   background-color: #f4989c;
   position: absolute;
   padding: 3em;
@@ -264,17 +375,17 @@ body {
   transform: translateY(101%);
   transition: transform 0.5s ease;
 }
-.popular-movies .movie .movie__overview.active {
+.main .popular-movies .movie .movie__overview.active {
   transform: translateY(0);
 }
-.popular-movies .movie .movie__overview--header {
+.main .popular-movies .movie .movie__overview--header {
   padding-inline: 1em;
   margin-bottom: 2em;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-.popular-movies .movie .movie__overview--header .close-btn {
+.main .popular-movies .movie .movie__overview--header .close-btn {
   font-size: 1.3rem;
   cursor: pointer;
   background-color: #acecf7;
@@ -283,24 +394,24 @@ body {
   line-height: 2rem;
   border-radius: 50%;
 }
-.popular-movies .movie .movie__overview--header .close-btn:hover {
+.main .popular-movies .movie .movie__overview--header .close-btn:hover {
   transform: rotate(90deg);
   color: #d6f6dd;
 }
-.popular-movies .movie .movie__overview h2 {
+.main .popular-movies .movie .movie__overview h2 {
   text-transform: uppercase;
   font-size: 1.3rem;
   font-weight: 700;
   color: #212121;
   letter-spacing: 1px;
 }
-.popular-movies .movie .movie__overview p {
+.main .popular-movies .movie .movie__overview p {
   font-size: 1rem;
   font-weight: 500;
   color: #212121;
   letter-spacing: 1px;
 }
-.popular-movies .movie .overview-btn {
+.main .popular-movies .movie .overview-btn {
   display: grid;
   place-items: center;
   position: absolute;
@@ -315,10 +426,10 @@ body {
   bottom: 20px;
   cursor: pointer;
 }
-.popular-movies .movie .overview-btn:hover {
+.main .popular-movies .movie .overview-btn:hover {
   border: 2px solid #00C9AF;
 }
-.popular-movies .movie .overview-btn i {
+.main .popular-movies .movie .overview-btn i {
   color: #f4989c;
   font-size: 1.5rem;
 }

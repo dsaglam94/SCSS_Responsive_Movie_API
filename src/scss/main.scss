@@ -1,6 +1,7 @@
 @use './base/mixins';
 @use './base/variables';
 @use './modules/top-movies';
+@use './modules/movie-details';
 
 *,
 *::before,
@@ -151,6 +152,9 @@ body {
     }
 }
 
+.main {
+    position: relative;
+
 .popular-movies { 
     @include mixins.grid(15rem);
     
@@ -173,7 +177,7 @@ body {
         }
 
         &__poster {
-            // width: 100%;
+            width: 100%;
             // flex: 2 1 90rem;
             overflow: hidden;
             cursor: pointer;
@@ -288,6 +292,7 @@ body {
             }
         }
     }
+}
 }
 
 @include mixins.media-710 {
