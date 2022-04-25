@@ -23,10 +23,11 @@ const overviewCloseBtn = document.querySelector('.close-btn');
 const main = document.querySelector('#main');
 const randomBtn = document.getElementById('random-btn');
 
-const api_mostPopularMovies_url = 'https://imdb-api.com/en/API/MostPopularMovies/k_lbf73nbh';
-const api_top250Movies_url = 'https://imdb-api.com/en/API/Top250Movies/k_lbf73nbh';
+// const api_mostPopularMovies_url = 'https://imdb-api.com/en/API/MostPopularMovies/k_lbf73nbh';
+// const api_top250Movies_url = 'https://imdb-api.com/en/API/Top250Movies/k_lbf73nbh';
 
-const api_searchMovieTitle_url = 'https://imdb-api.com/en/API/SearchMovie/k_lbf73nbh/'
+// const api_searchMovieTitle_url = 'https://imdb-api.com/en/API/SearchMovie/k_lbf73nbh/';
+// const moviePoster = document.querySelector('.movie__poster');
 
 
 window.addEventListener('load', () => {
@@ -34,6 +35,13 @@ window.addEventListener('load', () => {
     getMostPopular();
     getTop250Movies();
 
+});
+
+document.body.addEventListener('click', (e) => {
+
+   if (e.target.id === 'movie__img') {
+       console.log('it worked!')
+   }
 });
 
 
@@ -127,7 +135,7 @@ function showTop250Movies(data) {
         slides.innerHTML += `
         <div class="slide swiper-slide">
                     <div class="top-movies__poster">
-                        <img src="${el.image}" alt="${el.title}">
+                        <img id="movie__img" src="${el.image}" alt="${el.title}">
                     </div>
                     <div class="top-movies__content">
                         <p class="title">
@@ -171,7 +179,7 @@ function showMostPopular(data) {
             </span>
         </div>
         <div class="movie__poster">
-            <img src="${el.image}" alt="${el.title}">
+            <img id="movie__img" src="${el.image}" alt="${el.title}">
         </div>
     
         `

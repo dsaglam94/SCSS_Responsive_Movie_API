@@ -1,0 +1,137 @@
+@use '../base/mixins';
+@use '../base/variables';
+
+.movie-details {
+    display: none;
+    width: 85%;
+    position: absolute;
+    z-index: 1200;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%);
+    padding: 3em 4em;
+    background-color: variables.$clr-neutral-gray-700;
+    color: variables.$clr-white;
+
+    &__container {
+        width: 100%;
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+        justify-content: center;
+
+        .close-btn {
+            width: 100%;
+            margin-bottom: 3em;
+            display: flex;
+            justify-content: flex-end;
+
+            i {
+                display: inline-block;
+                font-size: 1.2rem;
+                width: 2rem;
+                height: 2rem;
+                line-height: 2rem;
+                background-color: variables.$clr-neutral-gray-400;
+                color: variables.$clr-white;
+                border-radius: 50%;
+                text-align: center;
+                cursor: pointer;
+
+                &:hover {
+                    color: variables.$clr-accent;
+                }
+            }
+        }
+
+        .movie__info {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            .movie__poster {
+                width: 30%;
+
+                img {
+                    width: 100%;
+                    object-fit: cover;
+                }
+            }
+            
+            &--text {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                margin-bottom: auto;
+                gap: 2rem;
+                width: 100%;
+                margin-left: 5em;
+                letter-spacing: 1px;
+
+                .title,
+                .crew,
+                .rating,
+                .year {
+                    display: flex;
+                    align-items: center;
+                    gap: 1rem;
+
+                    span {
+                        font-size: 1rem;
+                        font-weight: bolder;
+                        text-transform: uppercase;
+                    }
+                }
+
+                .title {
+
+                    h1 {
+                        font-size: 2rem;
+                        text-transform: uppercase;
+                    }
+                }
+
+                .crew {
+
+                    p {
+                        font-size: 1.5rem;
+                        text-transform: capitalize;
+                    }
+
+                }
+
+                .rating {
+
+                    p {
+                        font-size: 1.1rem;
+
+                        &.green {
+                            color: green;
+                        }
+        
+                        &.orange {
+                            color: orange;
+                        }
+        
+                        &.red {
+                            color: red;
+                        }
+                    }
+                }
+
+                .year {
+
+                    p {
+                        font-size: 1.1rem;
+                    }
+                }
+            }
+        }
+
+        .plot {
+            font-size: 1.3rem;
+            padding-block: 2em;
+        }
+    }
+}
