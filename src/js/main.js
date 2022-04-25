@@ -24,11 +24,16 @@ const main = document.querySelector('#main');
 const randomBtn = document.getElementById('random-btn');
 const movieDetails = document.querySelector('.movie-details');
 
-const api_mostPopularMovies_url = 'https://imdb-api.com/en/API/MostPopularMovies/k_lbf73nbh';
+// dsaglam94 API Key
+// const api_mostPopularMovies_url = 'https://imdb-api.com/en/API/MostPopularMovies/k_lbf73nbh';
 // const api_top250Movies_url = 'https://imdb-api.com/en/API/Top250Movies/k_lbf73nbh';
-
 // const api_searchMovieTitle_url = 'https://imdb-api.com/en/API/SearchMovie/k_lbf73nbh/';
-// const moviePoster = document.querySelector('.movie__poster');
+
+// dsaglam95 API Key
+const api_mostPopularMovies_url = 'https://imdb-api.com/en/API/MostPopularMovies/k_9bavb3k2';
+const api_top250Movies_url = 'https://imdb-api.com/en/API/Top250Movies/k_9bavb3k2';
+// const api_searchMovieTitle_url = 'https://imdb-api.com/en/API/SearchMovie/k_lbf73nbh/';
+
 
 // Get the movies on page load
 window.addEventListener('load', () => {
@@ -123,8 +128,12 @@ function searchFilter(){
 // For now I had to attach the ID to "alt attribute" so it's not shown in the UI but still reachable
 // Then fetch the data needed through this ID
 async function getMovieDetails(data) {
-    const url = `https://imdb-api.com/en/API/Title/k_lbf73nbh/${data}`;
+    // dsaglam94 API key
+    // const url = `https://imdb-api.com/en/API/Title/k_lbf73nbh/${data}`;
 
+    // dsaglam95 API key
+    const url = `https://imdb-api.com/en/API/Title/k_9bavb3k2/${data}/Trailer,`;
+    
     try {
         const response = await fetch(url);
         const newData = await response.json();
@@ -141,14 +150,15 @@ async function getMovieDetails(data) {
 // Create necessary elements in DOM and append them in the existing element
 // Show the movie details 
 function showMovieDetails(data) {
-    console.log(data)
+    // console.log(data.trailer.linkEmbed)
     const movieDetailsContainer = document.querySelector('.movie-details__container');
+    const videoLink = data.trailer.linkEmbed;
 
     movieDetailsContainer.innerHTML = `
     <div class="close-btn">
         <i id="movieDetails__close-btn" class="fas fa-times"></i>
     </div>
-    <div class="movie__info">
+            <div class="movie__info">
                 <div class="movie__poster">
                     <img src="${data.image}" alt="">
                 </div>
@@ -161,25 +171,42 @@ function showMovieDetails(data) {
                         <span>Crew: </span>
                         <p>${data.stars}</p>
                     </div>
-                    <div class="rating">
-                        <span>rating: </span>
-                        <p class="green">${data.imDbRating}</p>
+                    <div class="sub-info">
+                        <div class="left-col">
+                            <div class="rating">
+                                <span>rating: </span>
+                                    <p class="${showColor(data.imDbRating)}">
+                                        ${data.imDbRating}
+                                    </p>
+                            </div>
+                            <div class="year">
+                                <span>Year: </span>
+                                <p>${data.year}</p>
+                            </div>
+                        </div>
+                        <div class="right-col">
+                            <div class="director">
+                                <span>Director: </span>
+                                <p>${data.directors}</p>
+                            </div>
+                            <div class="genres">
+                            <span>Genres: </span>
+                            <p>
+                                ${data.genres}
+                            </p>
+                        </div>
                     </div>
-                    <div class="year">
-                        <span>Year: </span>
-                        <p>${data.year}</p>
                     </div>
                 </div>
             </div>
             <p class="plot">
                 ${data.plot}
             </p>
-            <iframe width="460" height="215" src="https://www.youtube.com/embed/mqqft2x_Aa4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe src="${videoLink}" title="IMDb video trailer" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                </iframe>
+            
     `
-
-
 }
-
 
 
 async function getTop250Movies() {
@@ -207,7 +234,7 @@ function showTop250Movies(data) {
         slides.innerHTML += `
         <div class="slide swiper-slide">
                     <div class="top-movies__poster">
-                        <img id="movie__img" src="${el.image}" alt="${el.title}">
+                        <img id="movie__img" src="${el.image}" alt="${el.id}">
                     </div>
                     <div class="top-movies__content">
                         <p class="title">
@@ -261,7 +288,7 @@ function showMostPopular(data) {
 
 }
 
-
+// Here is the helper functions for small tasks
 // Shorten the title based on the length 
     function shortenTitle(title){
         if (title.length > 14) {

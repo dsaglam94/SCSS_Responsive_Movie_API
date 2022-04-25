@@ -75,6 +75,7 @@
   padding: 3em 4em;
   background-color: #343332;
   color: #fff;
+  box-shadow: 1px 1px 1px 100vw rgba(0, 0, 0, 0.9);
 }
 .movie-details__container {
   width: 100%;
@@ -138,16 +139,17 @@
 .movie-details__container .movie__info--text .crew span,
 .movie-details__container .movie__info--text .rating span,
 .movie-details__container .movie__info--text .year span {
-  font-size: 0.7rem;
+  letter-spacing: 1px;
+  font-size: 0.8rem;
   font-weight: bolder;
   text-transform: uppercase;
 }
 .movie-details__container .movie__info--text .title h1 {
-  font-size: 2rem;
+  font-size: 1.7rem;
   text-transform: uppercase;
 }
 .movie-details__container .movie__info--text .crew p {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   text-transform: capitalize;
 }
 .movie-details__container .movie__info--text .rating p {
@@ -165,9 +167,38 @@
 .movie-details__container .movie__info--text .year p {
   font-size: 1.1rem;
 }
+.movie-details__container .movie__info .sub-info {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+}
+.movie-details__container .movie__info .sub-info .genres,
+.movie-details__container .movie__info .sub-info .director {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.movie-details__container .movie__info .sub-info .genres p,
+.movie-details__container .movie__info .sub-info .director p {
+  font-size: 1.1rem;
+}
+.movie-details__container .movie__info .sub-info span {
+  letter-spacing: 1px;
+  font-size: 0.8rem;
+  font-weight: bolder;
+  text-transform: uppercase;
+}
 .movie-details__container .plot {
+  line-height: 1.5;
+  letter-spacing: 1px;
   font-size: 1rem;
   padding-block: 2em;
+}
+.movie-details__container iframe {
+  width: 60%;
+  object-fit: cover;
+  aspect-ratio: 16/9;
 }
 
 *,
