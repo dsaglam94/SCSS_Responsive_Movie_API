@@ -6,6 +6,8 @@ I started this project to test my knowledge for web development and see what I c
 
 > Through my journey, I understood that the best way to learn is breaking, creating, trying stuff on your own.
 
+Disclamer: I am still learning. The code I am writing can be fatal for your eyes or the logic might give you headaches. Therefore I am always open for constructive criticism.
+
 ## What will the project be like at the end
 
 The user should be able to see and check:
@@ -19,6 +21,11 @@ also the user will be able to:
 
 - Search a movie via its 'title', 'genre' or 'rating'
 - Have a random film suggestion
+
+> update 26.04.2022
+> Now user can:
+
+- Get a random movie suggestion with a trailer and related infos
 
 ### The challenges I've come across so far
 
@@ -36,17 +43,30 @@ So I learned about 'event delegation). The solution is to have 'body' to listen 
 
 It seemed tricky at first but using a simple for loop solved the problem.
 
-3. IMDb API doesn't have everything I need. Ex: Trailer for each movie.
+3. Top 250 movies or the most popular movies IMDb APIs don't have any 'trailer', 'genres' and'director' datas in them.
 
-I have to use a different API which is called OMDb and combine it with IMDb API but so far I haven't tried. I will update this part later on.
+> Problem: I need these datas in order to show them inside the movie details UI.
+> Solution: IMDb API has a 'trailer' endpoint which has everything I need.
+
+Once I show the most popular movies and top 250 movies on the page, the user can click the images. When it's clicked, it takes the valid IMDb ID (tt1234567) and put it inside the trailer API.
+
+- The movie details are shown via another API. I managed to chain them.
+
+4. Random film suggestion, I had to figure out a way to make it random.
+
+To bring the data from the API, I need to use a valid IMDb ID. It starts with 'tt' but the numbers after that is unique. So randomizing it was problematic.
+
+> Solution: I used the 'The Most Popular Movies' API to get the valid ID. Created a helper function which generates random number between 0 and 100. Once the user clicks the random button, it picks a random movie's ID and hands it to 'trailer' APIs. And then it calls the movie details UI to show the movie.
+
+This one was the most challenging issue so far. Figuring out how to make it work taught me a good amount of valuable knowledge.
 
 #### Here is the useful resources
 
 > API I used
 
 - [IMDb](https://imdb-api.com/api)
-- [OMDb](http://www.omdbapi.com/)
 
 > Blog posts for my problems
 
 - [Event-delegation](https://davidwalsh.name/event-delegate)
+- [Return-response-from-asyc](https://stackoverflow.com/questions/14220321/how-to-return-the-response-from-an-asynchronous-call);
