@@ -150,10 +150,6 @@ function bringRandomMovie() {
         isMovieDetailsOpen = false;
         document.querySelector('body').style.overflowY = 'scroll';
     }
-    // let id = getRandomMovie();
-    // console.log(id);
-    // getMovieDetails(data);
-    // getRandomMovie();
 
     fetch(api_mostPopularMovies_url)
         .then(response => response.json())
@@ -163,27 +159,6 @@ function bringRandomMovie() {
             getMovieDetails(movieId);
         });
 }
-
-// async function getRandomMovie() {
-//     // const url = 'https://imdb-api.com/en/API/MostPopularMovies/k_9bavb3k2';
-
-//     try {
-//         // const response = await fetch(api_mostPopularMovies_url);
-//         const response = await getMostPopular()
-//         .then(function (result) {
-//             console.log(result);
-//         })
-//         // const data = await response.json();
-//         // let movieId = data.items[getRandomNumber()].id;
-//         // // console.log(movieId)
-//         // return movieId;
-
-//     } catch (error) {
-//         console.error(error);
-//         console.log('Random Movies Error');
-//     }
-    
-// }
 
 // Data comes when the user clicks on poster images. 
 // Images return valid IMDb ID
