@@ -156,15 +156,23 @@ body {
     position: relative;
 
 .popular-movies { 
+    margin-top: 5rem;
     @include mixins.grid(15rem);
-    
+    position: relative;
     padding: 2em;
+
+    h1 {
+        position: absolute;
+        top: -5rem;
+        left: 0; right: 0;
+    }
 
     .movie {
         display: flex;
         flex-flow: column;
         align-items: center;
         width: 100%;
+        position: relative;
         // height: 450px;
         // padding-inline: 10em;
         // position: relative;
@@ -191,31 +199,41 @@ body {
         }
 
         &__content {
-            background-color: variables.$clr-green;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 3em;
             width: 100%;
+            text-align: center;
+            background-color: variables.$clr-neutral-gray-700;
+            padding-block: 1em;
 
             .title {
-                @include mixins.titleText(.7rem, 600, variables.$clr-black);
-                // display: none;
+                @include mixins.titleText(.9rem, 600, variables.$clr-white);
             }
 
             .rating {
-                @include mixins.titleText(.9rem, 600, variables.$clr-black);
+                user-select: none;
+                pointer-events: none;
+                text-align: center;
+                line-height: 4rem;
+                height: 4rem;
+                width: 4rem;
+                font-size: 1rem;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background-color: rgba(0,0,0,0.5);
+                border-radius: 50%;
+                z-index: 2;
 
                 &.green {
-                    color: green;
+                    color: rgb(8, 196, 8);
                 }
 
                 &.orange {
-                    color: orange;
+                    color: rgb(252, 182, 52);
                 }
 
                 &.red {
-                    color: red;
+                    color: rgb(249, 28, 28);
                 }
             }
         }

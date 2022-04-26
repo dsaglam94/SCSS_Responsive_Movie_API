@@ -20,6 +20,7 @@
         .slides {
             
             .slide {
+                position: relative;
                 display: flex;
                 flex-flow: column;
                 align-items: center;
@@ -43,33 +44,42 @@
                 }
 
                 .top-movies__content {
-                    background-color: black;
-                    color: white;
                     width: 100%;
+                    text-align: center;
+                    background-color: variables.$clr-black;
                     padding-block: 1em;
-                    display: flex;
-                    align-items: center;
-                    justify-content: space-between;
 
                     .title {
-                        font-size: 1.3rem;
-                        padding-inline: 1em ;
+                        color: variables.$clr-white;
+                        font-size: 1rem;
                     }
 
                     .rating {
-                        padding-inline: 1em;
-                        font-size: .7rem;
+                        user-select: none;
+                        pointer-events: none;
+                        text-align: center;
+                        line-height: 4rem;
+                        height: 4rem;
+                        width: 4rem;
+                        font-size: 1rem;
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        background-color: rgba(0,0,0,0.6);
+                        border-radius: 50%;
+
 
                         &.green {
-                            color: green;
+                            color: rgb(8, 196, 8);
                         }
         
                         &.orange {
-                            color: orange;
+                            color: rgb(252, 182, 52);
                         }
         
                         &.red {
-                            color: red;
+                            color: rgb(249, 28, 28);
                         }
                     }
                 }

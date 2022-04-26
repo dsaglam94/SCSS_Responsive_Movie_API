@@ -25,13 +25,13 @@ const randomBtn = document.getElementById('random-btn');
 const movieDetails = document.querySelector('.movie-details');
 
 // dsaglam94 API Key
-// const api_mostPopularMovies_url = 'https://imdb-api.com/en/API/MostPopularMovies/k_lbf73nbh';
-// const api_top250Movies_url = 'https://imdb-api.com/en/API/Top250Movies/k_lbf73nbh';
+const api_mostPopularMovies_url = 'https://imdb-api.com/en/API/MostPopularMovies/k_lbf73nbh';
+const api_top250Movies_url = 'https://imdb-api.com/en/API/Top250Movies/k_lbf73nbh';
 // const api_searchMovieTitle_url = 'https://imdb-api.com/en/API/SearchMovie/k_lbf73nbh/';
 
 // dsaglam95 API Key
-const api_mostPopularMovies_url = 'https://imdb-api.com/en/API/MostPopularMovies/k_9bavb3k2';
-const api_top250Movies_url = 'https://imdb-api.com/en/API/Top250Movies/k_9bavb3k2';
+// const api_mostPopularMovies_url = 'https://imdb-api.com/en/API/MostPopularMovies/k_9bavb3k2';
+// const api_top250Movies_url = 'https://imdb-api.com/en/API/Top250Movies/k_9bavb3k2';
 // const api_searchMovieTitle_url = 'https://imdb-api.com/en/API/SearchMovie/k_lbf73nbh/';
 
 
@@ -46,14 +46,19 @@ window.addEventListener('load', () => {
 // Creating DOM elements dynamically. It is not possible to add eventlistener to something not exist.
 // Body listens for click and checks if the condition is true
 // If yes, event happens
+let isMovieDetailsOpen = false;
 document.body.addEventListener('click', (e) => {
 
    if (e.target.id === 'movie__img') {
        let data = e.target.alt
         getMovieDetails(data);
         movieDetails.style.display = 'block';
+        isMovieDetailsOpen = true;
+        document.querySelector('body').style.overflowY = 'hidden';
    } else if (e.target.id === 'movieDetails__close-btn') {
         movieDetails.style.display = 'none';
+        isMovieDetailsOpen = false;
+        document.querySelector('body').style.overflowY = 'scroll';
    }
 });
 
@@ -123,22 +128,71 @@ function searchFilter(){
 //     })
 // }
 
+// Bring a random movie 
+
+randomBtn.addEventListener('click', bringRandomMovie);
+
+function bringRandomMovie() {
+    if (!isMovieDetailsOpen) {
+        movieDetails.style.display = 'block';
+        isMovieDetailsOpen = true;
+        document.querySelector('body').style.overflowY = 'hidden';
+    } else {
+        movieDetails.style.display = 'none';
+        isMovieDetailsOpen = false;
+        document.querySelector('body').style.overflowY = 'scroll';
+    }
+    // let id = getRandomMovie();
+    // console.log(id);
+    // getMovieDetails(data);
+    // getRandomMovie();
+
+    fetch(api_mostPopularMovies_url)
+        .then(response => response.json())
+        .then(data => {
+            let movieId = data.items[getRandomNumber()].id;
+            console.log(movieId)
+            getMovieDetails(movieId);
+        });
+}
+
+// async function getRandomMovie() {
+//     // const url = 'https://imdb-api.com/en/API/MostPopularMovies/k_9bavb3k2';
+
+//     try {
+//         // const response = await fetch(api_mostPopularMovies_url);
+//         const response = await getMostPopular()
+//         .then(function (result) {
+//             console.log(result);
+//         })
+//         // const data = await response.json();
+//         // let movieId = data.items[getRandomNumber()].id;
+//         // // console.log(movieId)
+//         // return movieId;
+
+//     } catch (error) {
+//         console.error(error);
+//         console.log('Random Movies Error');
+//     }
+    
+// }
+
 // Data comes when the user clicks on poster images. 
 // Images return valid IMDb ID
 // For now I had to attach the ID to "alt attribute" so it's not shown in the UI but still reachable
 // Then fetch the data needed through this ID
 async function getMovieDetails(data) {
     // dsaglam94 API key
-    // const url = `https://imdb-api.com/en/API/Title/k_lbf73nbh/${data}`;
+    const url = `https://imdb-api.com/en/API/Title/k_lbf73nbh/${data}/Trailer,`;
 
     // dsaglam95 API key
-    const url = `https://imdb-api.com/en/API/Title/k_9bavb3k2/${data}/Trailer,`;
+    // const url = `https://imdb-api.com/en/API/Title/k_9bavb3k2/${data}/Trailer,`;
     
     try {
         const response = await fetch(url);
         const newData = await response.json();
         showMovieDetails(newData);
-        // console.log(newData);
+        console.log(newData);
         
     } catch (error) {
         console.error(error);
@@ -150,6 +204,7 @@ async function getMovieDetails(data) {
 // Create necessary elements in DOM and append them in the existing element
 // Show the movie details 
 function showMovieDetails(data) {
+    // console.log(data)
     // console.log(data.trailer.linkEmbed)
     const movieDetailsContainer = document.querySelector('.movie-details__container');
     const videoLink = data.trailer.linkEmbed;
@@ -270,18 +325,17 @@ function showMostPopular(data) {
         const movieEl = document.createElement('div');
         movieEl.classList.add('movie');
         movieEl.innerHTML += `
+        <div class="movie__poster">
+            <img id="movie__img" src="${el.image}" alt="${el.id}">
+        </div>
         <div class="movie__content">
-            <p class="title">
-                ${shortenTitle(el.title)}
-            </p>
+        <p class="title">
+            ${shortenTitle(el.title)}
+        </p>
             <span class="rating ${showColor(el.imDbRating)}">
                 ${hasRating(el.imDbRating)}
             </span>
         </div>
-        <div class="movie__poster">
-            <img id="movie__img" src="${el.image}" alt="${el.id}">
-        </div>
-    
         `
         popularMovies.appendChild(movieEl);
     })
@@ -289,6 +343,11 @@ function showMostPopular(data) {
 }
 
 // Here is the helper functions for small tasks
+// get random number
+    function getRandomNumber() {
+        return Math.floor((Math.random() * 100) + 1);
+    }
+
 // Shorten the title based on the length 
     function shortenTitle(title){
         if (title.length > 14) {
