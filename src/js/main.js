@@ -37,7 +37,12 @@ const movieDetails = document.querySelector('.movie-details');
 // dsaglam96 API Key
 const api_mostPopularMovies_url = 'https://imdb-api.com/en/API/MostPopularMovies/k_yq4s0foq';
 const api_top250Movies_url = 'https://imdb-api.com/en/API/Top250Movies/k_yq4s0foq';
-// const api_searchMovieTitle_url = 'https://imdb-api.com/en/API/SearchMovie/k_lbf73nbh/';
+// const api_searchMovieTitle_url = 'https://imdb-api.com/en/API/SearchMovie/k_yq4s0foq/';
+// const api_searchMovieTitle_url = 'https://imdb-api.com/API/AdvancedSearch/k_yq4s0foq?title=hard&groups=top_1000';
+const titleApiBase = 'https://imdb-api.com/API/AdvancedSearch/k_yq4s0foq?title=';
+const top_1000Movies = '&groups=top_1000';
+
+
 
 
 // Get the movies on page load
@@ -88,10 +93,10 @@ function searchFilter(){
             for (let i = 0; i < filterWord.length; i++) {
                 if (filterWord[i].checked) {
                     searchValue = searchInput.value;
+                    console.log(filterWord[i].value);
 
                     return searchMovietitle(searchValue);
                     // return [filterWord[i].value, searchValue];
-                    // console.log(filterWord[i].value);
                     // console.log(searchValue)
                 } 
             }
@@ -101,40 +106,46 @@ function searchFilter(){
 
 
 
-// async function searchMovietitle(title) {
-//     try {
+async function searchMovietitle(title) {
+    try {
 
-//         const response = await fetch(api_searchMovieTitle_url+title);
-//         const data = await response.json();
-//         // console.log(data)
-//         showSearchedTitle(data);
+        const response = await fetch(`${titleApiBase}${title}${top_1000Movies}`);
+        const data = await response.json();
+        // console.log(data)
+        showSearchedTitle(data);
 
-//     } catch (error) {
-//         console.error(error);
-//         console.log('error');
-//     }
-// }
+    } catch (error) {
+        console.error(error);
+        console.log('error');
+    }
+}
 
-// function showSearchedTitle(data) {
-//     main.innerHTML = '';
-//     // console.log(data.items)
-
-//     data.results.forEach(el => {
-//         const movieEl = document.createElement('div');
-//         movieEl.classList.add('movie');
-//         movieEl.innerHTML = `
-//         <div class="movie__content">
-//         <p class="title">${shortenTitle(el.title)}</p>
-//         <span class="rating ${showColor(el.imDbRating)}">${hasRating(el.imDbRating)}</span>
-//     </div>
-//     <div class="movie__poster">
-//         <img src="${el.image}" alt="${el.title}">
-//     </div>
+function showSearchedTitle(data) {
+    const popularMovies = document.querySelector('.popular-movies');
     
-//         `
-//         main.appendChild(movieEl);
-//     })
-// }
+    popularMovies.innerHTML = '';
+    // console.log(data.items)
+
+    data.results.forEach(el => {
+        // const popularMovies = document.querySelector('.popular-movies');
+        const movieEl = document.createElement('div');
+        movieEl.classList.add('movie');
+        movieEl.innerHTML += `
+        <div class="movie__poster">
+            <img id="movie__img" src="${el.image}" alt="${el.id}">
+        </div>
+        <div class="movie__content">
+        <p class="title">
+            ${shortenTitle(el.title)}
+        </p>
+            <span class="rating ${showColor(el.imDbRating)}">
+                ${hasRating(el.imDbRating)}
+            </span>
+        </div>
+        `
+        popularMovies.appendChild(movieEl);
+    })
+}
 
 // Bring a random movie 
 
