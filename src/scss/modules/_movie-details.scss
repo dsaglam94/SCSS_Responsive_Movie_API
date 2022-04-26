@@ -3,11 +3,13 @@
 
 .movie-details {
     display: none;
-    width: 85%;
-    min-height: 80vh;
-    // overflow: hidden;
+    width: 80vw;
+    height: 80vh;
     position: fixed;
+    overflow-y: scroll;
+    overflow-x: hidden;
     z-index: 1200;
+    // top: 0; bottom: 0;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -30,19 +32,14 @@
             justify-content: flex-end;
 
             i {
-                display: inline-block;
-                font-size: 1.2rem;
-                width: 2rem;
-                height: 2rem;
-                line-height: 2rem;
-                background-color: variables.$clr-neutral-gray-400;
+                font-size: 1.5rem;
                 color: variables.$clr-white;
-                border-radius: 50%;
-                text-align: center;
                 cursor: pointer;
+                transition: all .25s linear;
 
                 &:hover {
                     color: variables.$clr-accent;
+                    transform: rotate(90deg);
                 }
             }
         }
@@ -81,6 +78,9 @@
                     gap: 1rem;
 
                     span {
+                        background-color: green;
+                        padding: .5em 1em;
+                        border-radius: .5rem;
                         letter-spacing: 1px;
                         font-size: .8rem;
                         font-weight: bolder;
@@ -106,6 +106,7 @@
                 }
 
                 .rating {
+                    margin-bottom: 1.5rem;
 
                     p {
                         font-size: 1.1rem;
@@ -154,8 +155,14 @@
                     font-size: .8rem;
                     font-weight: bolder;
                     text-transform: uppercase;
+                    background-color: green;
+                    padding: .5em 1em;
+                    border-radius: .5rem;
                 }
 
+                .director {
+                    margin-bottom: 1.5rem;
+                }
 
             }
         }
@@ -168,9 +175,9 @@
         }
 
             iframe {
-                width: 60%;
+                width: 87%;
                 object-fit: cover;
-                aspect-ratio: 16 / 9;
+                aspect-ratio: 16 / 9 ;
             }
         
         
