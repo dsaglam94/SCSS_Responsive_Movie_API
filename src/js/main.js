@@ -25,13 +25,18 @@ const randomBtn = document.getElementById('random-btn');
 const movieDetails = document.querySelector('.movie-details');
 
 // dsaglam94 API Key
-const api_mostPopularMovies_url = 'https://imdb-api.com/en/API/MostPopularMovies/k_lbf73nbh';
-const api_top250Movies_url = 'https://imdb-api.com/en/API/Top250Movies/k_lbf73nbh';
+// const api_mostPopularMovies_url = 'https://imdb-api.com/en/API/MostPopularMovies/k_lbf73nbh';
+// const api_top250Movies_url = 'https://imdb-api.com/en/API/Top250Movies/k_lbf73nbh';
 // const api_searchMovieTitle_url = 'https://imdb-api.com/en/API/SearchMovie/k_lbf73nbh/';
 
 // dsaglam95 API Key
 // const api_mostPopularMovies_url = 'https://imdb-api.com/en/API/MostPopularMovies/k_9bavb3k2';
 // const api_top250Movies_url = 'https://imdb-api.com/en/API/Top250Movies/k_9bavb3k2';
+// const api_searchMovieTitle_url = 'https://imdb-api.com/en/API/SearchMovie/k_lbf73nbh/';
+
+// dsaglam96 API Key
+const api_mostPopularMovies_url = 'https://imdb-api.com/en/API/MostPopularMovies/k_yq4s0foq';
+const api_top250Movies_url = 'https://imdb-api.com/en/API/Top250Movies/k_yq4s0foq';
 // const api_searchMovieTitle_url = 'https://imdb-api.com/en/API/SearchMovie/k_lbf73nbh/';
 
 
@@ -46,6 +51,9 @@ window.addEventListener('load', () => {
 // Creating DOM elements dynamically. It is not possible to add eventlistener to something not exist.
 // Body listens for click and checks if the condition is true
 // If yes, event happens
+
+// added flag to check whether the movie details UI open or not
+// it is needed also for the random button to open/close the UI
 let isMovieDetailsOpen = false;
 document.body.addEventListener('click', (e) => {
 
@@ -183,10 +191,13 @@ function bringRandomMovie() {
 // Then fetch the data needed through this ID
 async function getMovieDetails(data) {
     // dsaglam94 API key
-    const url = `https://imdb-api.com/en/API/Title/k_lbf73nbh/${data}/Trailer,`;
+    // const url = `https://imdb-api.com/en/API/Title/k_lbf73nbh/${data}/Trailer,`;
 
     // dsaglam95 API key
     // const url = `https://imdb-api.com/en/API/Title/k_9bavb3k2/${data}/Trailer,`;
+
+    // dsaglam96 API key
+    const url = `https://imdb-api.com/en/API/Title/k_yq4s0foq/${data}/Trailer,`;
     
     try {
         const response = await fetch(url);
