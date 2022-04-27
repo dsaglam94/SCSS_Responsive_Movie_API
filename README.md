@@ -43,6 +43,25 @@ So I learned about 'event delegation). The solution is to have 'body' to listen 
 
 It seemed tricky at first but using a simple for loop solved the problem.
 
+here is the code snippet:
+
+```
+// anotherBtn.addEventListener('click', () => {
+
+//     let value = document.forms[0]
+//     let filterWord = '';
+
+//     for (let i = 0; i < value.length; i++) {
+//         if (value[i].checked) {
+//             filterWord = search.value;
+//             console.log(value[i].value);
+//             console.log(filterWord)
+//         }
+//     }
+
+// })
+```
+
 3. Top 250 movies or the most popular movies IMDb APIs don't have any 'trailer', 'genres' and'director' datas in them.
 
 > Problem: I need these datas in order to show them inside the movie details UI.
