@@ -23,24 +23,26 @@ const overviewCloseBtn = document.querySelector('.close-btn');
 const main = document.querySelector('#main');
 const randomBtn = document.getElementById('random-btn');
 const movieDetails = document.querySelector('.movie-details');
+let searchPlaceholder = document.getElementsByName('search')[0].placeholder;
 
-// dsaglam94 API Key
-// const api_mostPopularMovies_url = 'https://imdb-api.com/en/API/MostPopularMovies/k_lbf73nbh';
-// const api_top250Movies_url = 'https://imdb-api.com/en/API/Top250Movies/k_lbf73nbh';
-// const api_searchMovieTitle_url = 'https://imdb-api.com/en/API/SearchMovie/k_lbf73nbh/';
+// dsaglam94 API Key k_lbf73nbh 
 
-// dsaglam95 API Key
-// const api_mostPopularMovies_url = 'https://imdb-api.com/en/API/MostPopularMovies/k_9bavb3k2';
-// const api_top250Movies_url = 'https://imdb-api.com/en/API/Top250Movies/k_9bavb3k2';
-// const api_searchMovieTitle_url = 'https://imdb-api.com/en/API/SearchMovie/k_lbf73nbh/';
+// dsaglam95 API Key k_9bavb3k2
 
-// dsaglam96 API Key
-const api_mostPopularMovies_url = 'https://imdb-api.com/en/API/MostPopularMovies/k_yq4s0foq';
-const api_top250Movies_url = 'https://imdb-api.com/en/API/Top250Movies/k_yq4s0foq';
+// dsaglam96 API Key k_yq4s0foq
+
+const api_mostPopularMovies_url = 'https://imdb-api.com/en/API/MostPopularMovies/k_lbf73nbh ';
+const api_top250Movies_url = 'https://imdb-api.com/en/API/Top250Movies/k_lbf73nbh ';
 // const api_searchMovieTitle_url = 'https://imdb-api.com/en/API/SearchMovie/k_yq4s0foq/';
-// const api_searchMovieTitle_url = 'https://imdb-api.com/API/AdvancedSearch/k_yq4s0foq?title=hard&groups=top_1000';
-const titleApiBase = 'https://imdb-api.com/API/AdvancedSearch/k_yq4s0foq?title=';
+// const api_searchMovieTitle_url = 'https://imdb-api.com/API/AdvancedSearch/k_yq4s0foq?title=hard&groups=top_1000'; 
+const titleApiBase = 'https://imdb-api.com/API/AdvancedSearch/k_lbf73nbh?title=';
+const genreApiBase = 'https://imdb-api.com/API/AdvancedSearch/k_lbf73nbh?genres=';
+const ratingApiBase = 'https://imdb-api.com/API/AdvancedSearch/k_lbf73nbh?user_rating=';
 const top_1000Movies = '&groups=top_1000';
+
+
+// https://imdb-api.com/API/AdvancedSearch/k_yq4s0foq?genres=action,comedy&groups=top_1000
+// https://imdb-api.com/API/AdvancedSearch/k_yq4s0foq?user_rating=5.5,10&groups=top_1000
 
 
 
@@ -72,6 +74,12 @@ document.body.addEventListener('click', (e) => {
         movieDetails.style.display = 'none';
         isMovieDetailsOpen = false;
         document.querySelector('body').style.overflowY = 'scroll';
+   } else if (e.target.value === 'title') {
+        changePlaceholderTitle();
+   } else if (e.target.value === 'genre') {
+        changePlaceholderGenre();
+   } else if (e.target.value === 'rating') {
+        changePlaceholderRating();
    }
 });
 
@@ -91,17 +99,35 @@ function searchFilter(){
         let searchValue = '';
         
             for (let i = 0; i < filterWord.length; i++) {
-                if (filterWord[i].checked) {
+                if (filterWord[i].checked && filterWord[i].value === 'title') {
                     searchValue = searchInput.value;
-                    console.log(filterWord[i].value);
-
                     return searchMovietitle(searchValue);
-                    // return [filterWord[i].value, searchValue];
-                    // console.log(searchValue)
-                } 
+                } else if (filterWord[i].checked && filterWord[i].value === 'genre') {
+                    searchValue = searchInput.value;
+                    return searchMovieGenre(searchValue);
+                } else if (filterWord[i].checked && filterWord[i].value === 'rating') {
+                    searchValue = searchInput.value;
+                    console.log(searchValue)
+                    return searchMovieRating(searchValue);
+                }
             }
     }
 };
+
+function changePlaceholderGenre() {
+    searchInput.value = '';
+    searchInput.placeholder = 'action,drama,mystery';
+}
+
+function changePlaceholderRating() {
+    searchInput.value = '';
+    searchInput.placeholder = '1.0,8.9';
+}
+
+function changePlaceholderTitle() {
+    searchInput.value = '';
+    searchInput.placeholder = 'lord-of-the-rings';
+}
 
 
 
@@ -112,7 +138,7 @@ async function searchMovietitle(title) {
         const response = await fetch(`${titleApiBase}${title}${top_1000Movies}`);
         const data = await response.json();
         // console.log(data)
-        showSearchedTitle(data);
+        showSearchedMovie(data);
 
     } catch (error) {
         console.error(error);
@@ -120,7 +146,35 @@ async function searchMovietitle(title) {
     }
 }
 
-function showSearchedTitle(data) {
+async function searchMovieGenre(genre) {
+    try {
+
+        const response = await fetch(`${genreApiBase}${genre}${top_1000Movies}`);
+        const data = await response.json();
+        // console.log(data)
+        showSearchedMovie(data);
+
+    } catch (error) {
+        console.error(error);
+        console.log('error');
+    }
+}
+
+async function searchMovieRating(rating) {
+    try {
+
+        const response = await fetch(`${ratingApiBase}${rating}${top_1000Movies}`);
+        const data = await response.json();
+        // console.log(data)
+        showSearchedMovie(data);
+
+    } catch (error) {
+        console.error(error);
+        console.log('error');
+    }
+}
+
+function showSearchedMovie(data) {
     const popularMovies = document.querySelector('.popular-movies');
     
     popularMovies.innerHTML = '';
@@ -183,7 +237,7 @@ async function getMovieDetails(data) {
     // const url = `https://imdb-api.com/en/API/Title/k_9bavb3k2/${data}/Trailer,`;
 
     // dsaglam96 API key
-    const url = `https://imdb-api.com/en/API/Title/k_yq4s0foq/${data}/Trailer,`;
+    const url = `https://imdb-api.com/en/API/Title/k_lbf73nbh/${data}/Trailer,`;
     
     try {
         const response = await fetch(url);
