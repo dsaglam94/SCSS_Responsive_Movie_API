@@ -2,7 +2,7 @@
 
 ## Why this project?
 
-I started this project to test my knowledge for web development and see what I can accomplish on my own. Since my learning journey's begun, I learned, practiced and created many small and big projects. But so far this one is the most challenging of them all.
+I started this project to test my knowledge for web development and see what I can accomplish on my own. Since my learning journey's begun, I learned, practiced and created many projects. But so far this one is the most challenging of them all.
 
 > Through my journey, I understood that the best way to learn is breaking, creating, trying stuff on your own.
 
@@ -23,9 +23,11 @@ also the user will be able to:
 - Have a random film suggestion
 
 > update 26.04.2022
+> update 27.04.2022
 > Now user can:
 
 - Get a random movie suggestion with a trailer and related infos
+- filter the search keywords and find the movies according to their 'title', 'genre' and 'rating'
 
 ### The challenges I've come across so far
 
@@ -69,7 +71,7 @@ here is the code snippet:
 
 Once I show the most popular movies and top 250 movies on the page, the user can click the images. When it's clicked, it takes the valid IMDb ID (tt1234567) and put it inside the trailer API.
 
-- The movie details are shown via another API. I managed to chain them.
+- The movie details are shown via another IMDb API. I managed to chain them.
 
 4. Random film suggestion, I had to figure out a way to make it random.
 
@@ -78,6 +80,17 @@ To bring the data from the API, I need to use a valid IMDb ID. It starts with 't
 > Solution: I used the 'The Most Popular Movies' API to get the valid ID. Created a helper function which generates random number between 0 and 100. Once the user clicks the random button, it picks a random movie's ID and hands it to 'trailer' APIs. And then it calls the movie details UI to show the movie.
 
 This one was the most challenging issue so far. Figuring out how to make it work taught me a good amount of valuable knowledge.
+
+4. The user should be informed about the keyword search style or else the filter term won't work.
+
+I didn't know how to change the placeholder text inside the input area. So a little googling helped me.
+
+This little code snippet is all needed. I created helper functions to dynamically change the text according to the user selection.
+
+```
+document.getElementsByName("email")[0].value="";
+document.getElementsByName("email")[0].placeholder="your message";
+```
 
 #### Here is the useful resources
 
@@ -88,4 +101,5 @@ This one was the most challenging issue so far. Figuring out how to make it work
 > Blog posts for my problems
 
 - [Event-delegation](https://davidwalsh.name/event-delegate)
-- [Return-response-from-asyc](https://stackoverflow.com/questions/14220321/how-to-return-the-response-from-an-asynchronous-call);
+- [Return-response-from-asyc](https://stackoverflow.com/questions/14220321/how-to-return-the-response-from-an-asynchronous-call)
+- [Change-placeholder-text](https://stackoverflow.com/questions/13506481/change-placeholder-text)
