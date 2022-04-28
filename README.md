@@ -1,4 +1,4 @@
-# Movie_API
+# [Click here for live site](https://dsaglam94.github.io/SCSS_Responsive_Movie_API/)
 
 ## Why this project?
 
