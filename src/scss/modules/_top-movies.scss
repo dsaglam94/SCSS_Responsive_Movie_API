@@ -5,9 +5,9 @@
 
     &__title {
         color: variables.$clr-white;
-        font-size: 2rem;
+        font-size: 2.5rem;
         text-align: center;
-        margin-block: 1em;
+        margin-bottom: 1em;
         text-transform: uppercase;
         letter-spacing: 2px;
     }
@@ -51,7 +51,7 @@
 
                     .title {
                         color: variables.$clr-white;
-                        font-size: 1rem;
+                        @include mixins.titleText(1.2rem, 600, variables.$clr-white);
                     }
 
                     .rating {

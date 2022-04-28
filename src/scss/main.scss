@@ -14,6 +14,7 @@
 html {
     box-sizing: border-box;
     scroll-behavior: smooth;
+    font-size: 60.5%;
 }
 
 body {
@@ -21,21 +22,23 @@ body {
     font-family: 'Montserrat', sans-serif;
     background-color: variables.$clr-black;
     min-height: 100vh;
-    font-size: 62.5%;
 }
 
 
 .header {
     width: 100%;
     text-align: center;
-    padding: 2em 1em;
+    padding: 2em 10em;
     background-color: variables.$clr-black;
 
     &__top-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
         width: 100%;
 
         .logo {
-            @include mixins.graphText(1.5rem, 500, variables.$clr-accent);
+            @include mixins.graphText(2rem, 500, variables.$clr-accent);
         }
 
         .search-icon {
@@ -43,17 +46,15 @@ body {
             align-items: center;
             justify-content: center;
             position: relative;
-            // margin-left: auto;
-            // width: 100%;
-            // padding-block: 2em;
-            // margin-top: 1em;
 
             .search-input {
+                color: variables.$clr-white;
                 position: relative;
                 right: -10px;
-                padding: .5em 2em;
+                padding: .5em;
                 outline: none;
                 border: none;
+                border-radius: .5rem;
                 transform-origin: right;
                 transform: scaleX(0);
                 transition: all .25s ease;
@@ -73,29 +74,26 @@ body {
 
             i {
                 cursor: pointer;
-                font-size: 1rem;
+                font-size: 1.5rem;
                 color: variables.$clr-white;
-                width: 2.5rem;
-                height: 2.5rem;
-                line-height: 2.5rem;
+                width: 3.5rem;
+                height: 3.5rem;
+                line-height: 3.5rem;
                 border-radius: 50%;
                 background-color: variables.$clr-accent;
                 z-index: 777;
                 transition: all .5s ease;
-
-                // &.active {
-                //     transform: translateX(110px) rotate(720deg);
-                // }
             }
         }
     }
 
     .form {
-        // border-top: variables.$border;
         @include mixins.titleText(.8rem, 600, variables.$clr-black);
-        padding-block: 1em;
-        transform: scaleY(0);
         display: none;
+        border-top: variables.$border;
+        margin-top: 2em;
+        padding-block: 2em;
+        transform: scaleY(0);
         transform-origin: top;
 
         &.active {
@@ -104,20 +102,21 @@ body {
         }
 
         label {
+            font-size: 1.5rem;
             color: variables.$clr-neutral-gray-200;
         }
 
-        label:where(:not(:first-of-type)) {
-            margin-left: 1em;
+        .genre {
+            margin-inline: 1em;
         }
 
         input[type="radio"] {
-            transform: translateY(0.25em);
+            transform: translateY(0.15rem);
             border: variables.$border;
             background-color: white;
             appearance: none;
-            width: 1rem;
-            height: 1rem;
+            width: 1.5rem;
+            height: 1.5rem;
             border-radius: 50%;
             position: relative;
             cursor: pointer;
@@ -125,8 +124,8 @@ body {
             &::before {
                 content: '';
                 position: absolute;
-                width: .55rem;
-                height: .55rem;
+                width: .70rem;
+                height: .70rem;
                 border-radius: 50%;
                 background-color: variables.$clr-accent;
                 left: 50%;
@@ -145,10 +144,10 @@ body {
         padding: 1em 3em;
         outline: none;
         border: none;
-        @include mixins.titleText(.8rem, 600, variables.$clr-black);
-        background-color: variables.$clr-blue;
+        letter-spacing: 1px;
+        @include mixins.titleText(1rem, 600, variables.$clr-white);
+        background-color: variables.$clr-accent;
         border-radius: .5rem;
-        margin-top: 2em;
     }
 }
 
@@ -156,12 +155,13 @@ body {
     position: relative;
 
 .popular-movies { 
-    margin-top: 5rem;
-    @include mixins.grid(15rem);
+    margin-top: 8rem;
+    @include mixins.grid(20rem);
     position: relative;
     padding: 2em;
 
     h1 {
+        font-size: 2.5rem;
         position: absolute;
         top: -5rem;
         left: 0; right: 0;
@@ -173,9 +173,6 @@ body {
         align-items: center;
         width: 100%;
         position: relative;
-        // height: 450px;
-        // padding-inline: 10em;
-        // position: relative;
         overflow: hidden;
         transition: scale .5s ease;
 
@@ -186,7 +183,6 @@ body {
 
         &__poster {
             width: 100%;
-            // flex: 2 1 90rem;
             overflow: hidden;
             cursor: pointer;
 
@@ -205,7 +201,7 @@ body {
             padding-block: 1em;
 
             .title {
-                @include mixins.titleText(.9rem, 600, variables.$clr-white);
+                @include mixins.titleText(1.2rem, 600, variables.$clr-white);
             }
 
             .rating {
@@ -313,13 +309,69 @@ body {
 }
 }
 
+@include mixins.media-991 {
+
+    .movie-details {
+
+        &__container {
+
+            .movie__info {
+                flex-direction: column;
+            }
+        }
+    }
+}
+
 @include mixins.media-710 {
     .header {
         
         &__top-row {
-            display: flex;
-            align-items: center;
-            justify-content: space-around;
+            display: block;
+
+            .search-icon {
+                margin-block: 2em;
+            }
+        }
+
+        .form {
+
+            label {
+                font-size: 1.2rem;
+            }
+
+            input[type="radio"] {
+                transform: translateY(.22rem);
+            }
         }
     }
+
+    .movie-details {
+
+        &__container {
+
+            .close-btn {
+                margin: 0;
+            }
+
+            .movie__info {
+                flex-direction: column;
+
+                .movie__poster {
+                    width: 30rem;
+                    margin-block: 3rem;
+                }
+
+                &--text {
+                    width: 100%;
+                }
+
+                .sub-info {
+                    flex-direction: column;
+                    align-items: flex-start;
+                }
+            }
+        }
+    }
+
+
 }
