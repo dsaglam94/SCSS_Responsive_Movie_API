@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Creator Tag -->
+    <meta name="Coded by" content="Dogan Saglam - (imDawn)" />
+    <meta name="GitHub:creator" content="https://github.com/dsaglam94" />
     <!-- Fontawesome CDN -->
     <script src="https://kit.fontawesome.com/be05affc2e.js" crossorigin="anonymous"></script>
     <!-- Swiper CSS CDN link -->
@@ -14,7 +17,7 @@
     <script src="./src/js/main.js" defer></script>
     <!-- Custom CSS -->
     <link rel="stylesheet" href="./src/css/main.css">
-    <title>My Movie API</title>
+    <title>Movie | Pick Your Movie</title>
 </head>
 <body>
 
@@ -26,6 +29,7 @@
                 <input name="search" type="search" id="search" class="search-input" placeholder="Search Here">
                 <i class="fas fa-search"></i>
             </div>
+            <button id="random-btn" class="random-btn">Surprise me!</button>
         </div>
 
 
@@ -36,7 +40,7 @@
                 Title:
                 <input type="radio" name="filter" id="title" value="title">
             </label>
-            <label for="filter">
+            <label class="genre" for="filter">
                 Genre:
                 <input type="radio" name="filter" id="title" value="genre">
             </label>
@@ -47,14 +51,13 @@
 
         </form>
 
-        <button id="random-btn" class="random-btn">Surprise me!</button>
     </header>
 
 <main class="main" id="main">
 
     <section class="top-movies">
-        <h1 class="top-movies__title">Top 250 Movies</h1>
         <div class="top-movies__swiper swiper">
+            <h1 class="top-movies__title">Top 250 Movies</h1>
             <div class="slides swiper-wrapper">
                 <!-- Create DOM elements dynamically via JS -->
             </div>

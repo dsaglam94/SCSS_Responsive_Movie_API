@@ -19,8 +19,14 @@
     letter-spacing: 1px;
 }
 
+@mixin media-991 {
+    @media (max-width:991px) {
+        @content;
+    }
+}
+
 @mixin media-710 {
-    @media (min-width: 710px) {
+    @media (max-width: 710px) {
         @content;
     }
 }

@@ -1,20 +1,4 @@
-
-
-// anotherBtn.addEventListener('click', () => {
-
-//     let value = document.forms[0]
-//     let filterWord = '';
-
-//     for (let i = 0; i < value.length; i++) {
-//         if (value[i].checked) {
-//             filterWord = search.value;
-//             console.log(value[i].value);
-//             console.log(filterWord)
-//         }
-//     }
-
-// })
-
+// Variables 
 const searchIcon = document.querySelector('.search-icon i');
 const searchInput = document.getElementById('search');
 const form = document.getElementById('form');
@@ -33,19 +17,11 @@ let searchPlaceholder = document.getElementsByName('search')[0].placeholder;
 
 const api_mostPopularMovies_url = 'https://imdb-api.com/en/API/MostPopularMovies/k_lbf73nbh ';
 const api_top250Movies_url = 'https://imdb-api.com/en/API/Top250Movies/k_lbf73nbh ';
-// const api_searchMovieTitle_url = 'https://imdb-api.com/en/API/SearchMovie/k_yq4s0foq/';
-// const api_searchMovieTitle_url = 'https://imdb-api.com/API/AdvancedSearch/k_yq4s0foq?title=hard&groups=top_1000'; 
+
 const titleApiBase = 'https://imdb-api.com/API/AdvancedSearch/k_lbf73nbh?title=';
 const genreApiBase = 'https://imdb-api.com/API/AdvancedSearch/k_lbf73nbh?genres=';
 const ratingApiBase = 'https://imdb-api.com/API/AdvancedSearch/k_lbf73nbh?user_rating=';
 const top_1000Movies = '&groups=top_1000';
-
-
-// https://imdb-api.com/API/AdvancedSearch/k_yq4s0foq?genres=action,comedy&groups=top_1000
-// https://imdb-api.com/API/AdvancedSearch/k_yq4s0foq?user_rating=5.5,10&groups=top_1000
-
-
-
 
 // Get the movies on page load
 window.addEventListener('load', () => {
@@ -62,6 +38,7 @@ window.addEventListener('load', () => {
 // added flag to check whether the movie details UI open or not
 // it is needed also for the random button to open/close the UI
 let isMovieDetailsOpen = false;
+
 document.body.addEventListener('click', (e) => {
 
    if (e.target.id === 'movie__img') {
@@ -114,6 +91,9 @@ function searchFilter(){
     }
 };
 
+// Change the placeholder text 
+// CHanges according to selected radio button's value
+// First gotta clear the text written. Or it doesn't show the new text
 function changePlaceholderGenre() {
     searchInput.value = '';
     searchInput.placeholder = 'action,drama,mystery';
@@ -131,7 +111,7 @@ function changePlaceholderTitle() {
 
 
 
-
+// Search with 'tittle'
 async function searchMovietitle(title) {
     try {
 
@@ -146,6 +126,7 @@ async function searchMovietitle(title) {
     }
 }
 
+// Search with 'genre'
 async function searchMovieGenre(genre) {
     try {
 
@@ -160,6 +141,7 @@ async function searchMovieGenre(genre) {
     }
 }
 
+// Search with 'rating'
 async function searchMovieRating(rating) {
     try {
 
@@ -173,7 +155,7 @@ async function searchMovieRating(rating) {
         console.log('error');
     }
 }
-
+// Show the searched movies on the main page 
 function showSearchedMovie(data) {
     const popularMovies = document.querySelector('.popular-movies');
     
@@ -202,7 +184,6 @@ function showSearchedMovie(data) {
 }
 
 // Bring a random movie 
-
 randomBtn.addEventListener('click', bringRandomMovie);
 
 function bringRandomMovie() {
@@ -230,13 +211,6 @@ function bringRandomMovie() {
 // For now I had to attach the ID to "alt attribute" so it's not shown in the UI but still reachable
 // Then fetch the data needed through this ID
 async function getMovieDetails(data) {
-    // dsaglam94 API key
-    // const url = `https://imdb-api.com/en/API/Title/k_lbf73nbh/${data}/Trailer,`;
-
-    // dsaglam95 API key
-    // const url = `https://imdb-api.com/en/API/Title/k_9bavb3k2/${data}/Trailer,`;
-
-    // dsaglam96 API key
     const url = `https://imdb-api.com/en/API/Title/k_lbf73nbh/${data}/Trailer,`;
     
     try {
@@ -308,7 +282,7 @@ function showMovieDetails(data) {
             <p class="plot">
                 ${data.plot}
             </p>
-                <iframe src="${videoLink}" title="IMDb video trailer" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                <iframe src="${videoLink}" title="IMDb video trailer" frameborder="0" allowfullscreen>
                 </iframe>
             
     `
@@ -394,6 +368,7 @@ function showMostPopular(data) {
 }
 
 // Here is the helper functions for small tasks
+
 // get random number
     function getRandomNumber() {
         return Math.floor((Math.random() * 100) + 1);
@@ -453,6 +428,9 @@ let swiper = new Swiper(".top-movies__swiper", {
         },
         1300: {
             slidesPerView: 6,
+        },
+        1480: {
+            slidesPerView: 8,
         }
       },
   });

@@ -10,24 +10,14 @@ Disclamer: I am still learning. The code I am writing can be fatal for your eyes
 
 ## What will the project be like at the end
 
-The user should be able to see and check:
+The user should be able to:
 
-- Top 250 movies fetched from IMDb API in a carousel
-- The most popular movies fetched from IMDb API on the main page
-- The movie details when click on the poster image
-- The trailer of the movie
-
-also the user will be able to:
-
+- See 'Top 250 Movies' fetched from IMDb API in a carousel
+- See 'The Most Popular' movies fetched from IMDb API on the main page
+- Check the movie details when click on the poster image
+- See the trailer of the movie
 - Search a movie via its 'title', 'genre' or 'rating'
 - Have a random film suggestion
-
-> update 26.04.2022
-> update 27.04.2022
-> Now user can:
-
-- Get a random movie suggestion with a trailer and related infos
-- filter the search keywords and find the movies according to their 'title', 'genre' and 'rating'
 
 ### The challenges I've come across so far
 
@@ -37,7 +27,7 @@ Since the DOM element doesn't exist at first, it is not possible to add 'event l
 
 > Solution for this problem can be found in this [link](https://stackoverflow.com/questions/34896106/attach-event-to-dynamic-elements-in-javascript)
 
-So I learned about 'event delegation). The solution is to have 'body' to listen and check if certain condition is met. If the element has been clicked has a certain ID, do something. If not, ignore.
+So I learned about 'event delegation'. The solution is to have 'body' to listen and check if certain condition is met. If the element has been clicked has a certain ID, do something. If not, ignore.
 
 2. For filtering the search terms, I used 'radio buttons'. But didn't really know how to get the value from them.
 
