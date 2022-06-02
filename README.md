@@ -1,25 +1,21 @@
-# [Click here for live site](https://dsaglam94.github.io/SCSS_Responsive_Movie_API/)
+<div align="center">
+  
+  # myMovie Web-App
+  ## [Click Here](https://dsaglam94.github.io/SCSS_Responsive_Movie_API/) for live site
 
-## Why this project?
 
-I started this project to test my knowledge for web development and see what I can accomplish on my own. Since my learning journey's begun, I learned, practiced and created many projects. But so far this one is the most challenging of them all.
 
-> Through my journey, I understood that the best way to learn is breaking, creating, trying stuff on your own.
+https://user-images.githubusercontent.com/98871279/171643247-925373ea-09eb-4aa6-b09f-34fd2e3fb019.mov
 
-Disclamer: I am still learning. The code I am writing can be fatal for your eyes or the logic might give you headaches. Therefore I am always open for constructive criticism.
 
-## What will the project be like at the end
+</div>
+  
+  ## How it's made:
+  <strong>Tech used:</strong> HTML5, SCSS, Vanilla JavaScript
 
-The user should be able to:
+I started this project to test my knowledge for web development and see what I can accomplish on my own. Since my learning journey's begun, I learned, practiced and created many projects. This was one of the most challenging ones. I built and designed the website from scratch. 
 
-- See 'Top 250 Movies' fetched from IMDb API in a carousel
-- See 'The Most Popular' movies fetched from IMDb API on the main page
-- Check the movie details when click on the poster image
-- See the trailer of the movie
-- Search a movie via its 'title', 'genre' or 'rating'
-- Have a random film suggestion
-
-### The challenges I've come across so far
+## Lessons Learned:
 
 1. Creating DOM elements dynamically via JS brings a different problem.
 
@@ -82,14 +78,12 @@ document.getElementsByName("email")[0].value="";
 document.getElementsByName("email")[0].placeholder="your message";
 ```
 
-#### Here is the useful resources
+## My different projects:
 
-> API I used
+Take a look at these couple of examples that I have in my portfolio:
 
-- [IMDb](https://imdb-api.com/api)
+<strong>Crowd Web-App:</strong> https://github.com/dsaglam94/Crowd_reactApp_deploy
 
-> Blog posts for my problems
+<strong>Todolist - ReactJs:</strong> https://github.com/dsaglam94/React_TodoList_App
 
-- [Event-delegation](https://davidwalsh.name/event-delegate)
-- [Return-response-from-asyc](https://stackoverflow.com/questions/14220321/how-to-return-the-response-from-an-asynchronous-call)
-- [Change-placeholder-text](https://stackoverflow.com/questions/13506481/change-placeholder-text)
+<strong>ESLCanvas:</strong> https://github.com/dsaglam94/imgCanvas_forESL
